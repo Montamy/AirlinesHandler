@@ -12,7 +12,7 @@
 
 	<artifactId>component</artifactId>
 	<name>component</name>
-	<description>Plane project build projects</description>
+	<description>Airlines project build component projects</description>
 	<packaging>pom</packaging>
 
 	<modules></modules>

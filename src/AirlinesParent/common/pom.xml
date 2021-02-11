@@ -16,9 +16,7 @@
 	<name>common</name>
 	<packaging>pom</packaging>
 		
-	<description>Plane project common projects</description>
-	
-
+	<description>Airlines project common</description>
 	
 	
 	<modules>

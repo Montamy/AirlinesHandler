@@ -12,7 +12,7 @@
 
 	<artifactId>AirlinesService</artifactId>
 	<name>AirlinesService</name>
-	<description>Plane service projekt</description>
+	<description>Airlines project airline, city, flight micro service</description>
 
 	<dependencies>
 		<dependency>

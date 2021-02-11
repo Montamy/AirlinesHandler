@@ -13,7 +13,7 @@
 
 	<artifactId>AirlinesCommon</artifactId>
 	<name>AirlinesCommon</name>
-	<description>Plane project common project</description>
+	<description>Airlines project common project</description>
 
 	<dependencies>
 		<dependency>

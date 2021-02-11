@@ -14,7 +14,7 @@
 	<name>service</name>
 	<packaging>pom</packaging>
 	
-	<description>Plane project service projects</description>
+	<description>Airlines project service projects</description>
 	
 
 	<modules>
