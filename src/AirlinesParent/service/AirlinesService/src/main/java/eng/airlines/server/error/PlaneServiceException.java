@@ -1,4 +1,4 @@
-package eng.plane.server.error;
+package eng.airlines.server.error;
 
 import org.springframework.http.HttpStatus;
 

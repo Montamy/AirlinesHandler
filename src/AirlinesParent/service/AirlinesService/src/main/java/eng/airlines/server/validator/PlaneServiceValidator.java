@@ -1,4 +1,4 @@
-package eng.plane.server.validator;
+package eng.airlines.server.validator;
 
 public class PlaneServiceValidator {
 

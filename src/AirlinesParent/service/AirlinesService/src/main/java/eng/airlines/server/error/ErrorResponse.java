@@ -1,4 +1,4 @@
-package eng.plane.server.error;
+package eng.airlines.server.error;
 
 public class ErrorResponse {
 

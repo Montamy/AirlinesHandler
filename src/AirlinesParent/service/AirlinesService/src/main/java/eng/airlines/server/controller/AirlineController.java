@@ -1,4 +1,4 @@
-package eng.plane.server.controller;
+package eng.airlines.server.controller;
 
 import java.util.List;
 
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import eng.plane.server.ControllerPath;
-import eng.plane.server.error.ErrorResponse;
-import eng.plane.server.error.PlaneServiceErrorCodes;
-import eng.plane.server.error.PlaneServiceException;
-import eng.plane.server.model.Airline;
-import eng.plane.server.processor.PlaneServiceProcessor;
-import eng.plane.server.validator.PlaneServiceValidatorInterface;
+import eng.airlines.server.ControllerPath;
+import eng.airlines.server.error.ErrorResponse;
+import eng.airlines.server.error.PlaneServiceErrorCodes;
+import eng.airlines.server.error.PlaneServiceException;
+import eng.airlines.server.model.Airline;
+import eng.airlines.server.processor.PlaneServiceProcessor;
+import eng.airlines.server.validator.PlaneServiceValidatorInterface;
 
 @Controller
 @RequestMapping(ControllerPath.BASE_PATH)

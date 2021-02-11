@@ -1,9 +1,9 @@
-package eng.plane.server.processor;
+package eng.airlines.server.processor;
 
 import java.util.List;
 
-import eng.plane.server.error.PlaneServiceException;
-import eng.plane.server.model.Airline;
+import eng.airlines.server.error.PlaneServiceException;
+import eng.airlines.server.model.Airline;
 
 public interface PlaneServiceProcessor {
 
