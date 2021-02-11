@@ -24,5 +24,10 @@ public class City extends BaseDbModel implements CityModelInterface {
 		this.population = population;
 	}
 
+	@Override
+	public String toString() {
+		return "[ id: " + id + " ,name: " + name + " ,population: " + population + " ]";
+	}
+
 
 }

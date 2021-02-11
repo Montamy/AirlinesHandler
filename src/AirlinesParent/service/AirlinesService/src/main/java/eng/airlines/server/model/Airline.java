@@ -15,4 +15,9 @@ public class Airline extends BaseDbModel implements AirlineModelInterface {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "[ id: " + id + " ,name: " + name + " ]";
+	}
+
 }

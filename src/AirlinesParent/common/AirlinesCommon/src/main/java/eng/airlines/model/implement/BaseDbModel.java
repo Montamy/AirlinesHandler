@@ -4,7 +4,7 @@ import eng.airlines.model.interfaces.DbStoredModelInterface;
 
 public class BaseDbModel implements DbStoredModelInterface {
 
-	private Long id;
+	protected Long id;
 
 
 	public Long getId() {

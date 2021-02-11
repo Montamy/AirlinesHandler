@@ -53,5 +53,10 @@ public class Flight extends BaseDbModel implements FlightModelInterface {
 		this.scheduleMin = scheduleMin;
 	}
 
+	@Override
+	public String toString() {
+		return "[ id: " + id + " ,airline: " + airline + " ,sourceCity: " + sourceCity + " ,destinationCity: " + destinationCity + " ,distance: " + distance + " ,scheduleMin: "
+				+ scheduleMin + " ]";
+	}
 
 }
