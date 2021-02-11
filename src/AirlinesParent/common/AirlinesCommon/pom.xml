@@ -3,21 +3,22 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>eng.plane</groupId>
-		<artifactId>service</artifactId>
+		<groupId>eng.airlines</groupId>
+		<artifactId>common</artifactId>
 		<version>0.0.1</version>
 		<relativePath>../</relativePath>
 	</parent>
 	
+	
 
-	<artifactId>PlaneService</artifactId>
-	<name>PlaneService</name>
-	<description>Plane service projekt</description>
+	<artifactId>AirlinesCommon</artifactId>
+	<name>AirlinesCommon</name>
+	<description>Plane project common project</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
 		<dependency>
@@ -30,8 +31,8 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

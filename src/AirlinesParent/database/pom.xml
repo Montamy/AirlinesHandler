@@ -3,22 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>eng.plane</groupId>
-		<artifactId>PlaneParent</artifactId>
+		<groupId>eng.airlines</groupId>
+		<artifactId>AirlinesParent</artifactId>
 		<version>0.0.1</version>
 		<relativePath>../</relativePath>
 	</parent>
 	
 
-	<artifactId>service</artifactId>
-	<name>service</name>
+	<artifactId>database</artifactId>
+	<name>database</name>
+	<description>Airlines projekt database layer</description>
 	<packaging>pom</packaging>
-	
-	<description>Plane project service projects</description>
-	
 
-	<modules>
-		<module>PlaneService</module>
-	</modules>
+	<modules></modules>
 
 </project>
