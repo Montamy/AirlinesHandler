@@ -9,13 +9,13 @@
 	</parent>
 	
 	
-	<groupId>eng.plane</groupId>
-	<artifactId>PlaneParent</artifactId>
+	<groupId>eng.airlines</groupId>
+	<artifactId>AirlinesParent</artifactId>
 	<version>0.0.1</version>
-	<name>PlaneParent</name>
+	<name>AirlinesParent</name>
 	<packaging>pom</packaging>
 	
-	<description>Plane project parent</description>
+	<description>Airlines project parent</description>
 	
 	<properties>
 		<java.version>13</java.version>
@@ -25,6 +25,7 @@
 	 	<module>common</module>
 	 	<module>component</module>
 	 	<module>service</module>
+	 	<module>database</module>
 	 </modules>
 
 </project>
