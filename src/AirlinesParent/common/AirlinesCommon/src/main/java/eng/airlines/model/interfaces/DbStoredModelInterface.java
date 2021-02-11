@@ -1,4 +1,4 @@
-package eng.airlines.interfaces;
+package eng.airlines.model.interfaces;
 
 public interface DbStoredModelInterface {
 	public Long getId();

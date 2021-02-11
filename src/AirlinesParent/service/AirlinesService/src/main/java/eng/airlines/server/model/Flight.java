@@ -1,10 +1,11 @@
 package eng.airlines.server.model;
 
-import eng.airlines.interfaces.AirlineModelInterface;
-import eng.airlines.interfaces.CityModelInterface;
-import eng.airlines.interfaces.FlightModelInterface;
+import eng.airlines.model.implement.BaseDbModel;
+import eng.airlines.model.interfaces.AirlineModelInterface;
+import eng.airlines.model.interfaces.CityModelInterface;
+import eng.airlines.model.interfaces.FlightModelInterface;
 
-public class Flight implements FlightModelInterface {
+public class Flight extends BaseDbModel implements FlightModelInterface {
 
 	private AirlineModelInterface airline;
 	private CityModelInterface sourceCity;

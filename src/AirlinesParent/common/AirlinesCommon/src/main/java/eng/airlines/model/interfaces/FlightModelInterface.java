@@ -1,6 +1,6 @@
-package eng.airlines.interfaces;
+package eng.airlines.model.interfaces;
 
-public interface FlightModelInterface {
+public interface FlightModelInterface extends DbStoredModelInterface {
 
 	public AirlineModelInterface getAirline();
 

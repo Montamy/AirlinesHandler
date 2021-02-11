@@ -1,8 +1,9 @@
 package eng.airlines.server.model;
 
-import eng.airlines.interfaces.CityModelInterface;
+import eng.airlines.model.implement.BaseDbModel;
+import eng.airlines.model.interfaces.CityModelInterface;
 
-public class City implements CityModelInterface {
+public class City extends BaseDbModel implements CityModelInterface {
 
 	private String name;
 	private Long population;

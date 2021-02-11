@@ -1,8 +1,9 @@
 package eng.airlines.server.model;
 
-import eng.airlines.interfaces.AirlineModelInterface;
+import eng.airlines.model.implement.BaseDbModel;
+import eng.airlines.model.interfaces.AirlineModelInterface;
 
-public class Airline implements AirlineModelInterface {
+public class Airline extends BaseDbModel implements AirlineModelInterface {
 
 	private String name;
 
