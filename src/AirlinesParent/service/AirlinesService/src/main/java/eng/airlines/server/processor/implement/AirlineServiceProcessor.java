@@ -54,7 +54,7 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 
 		if (dbObject == null) {
 			logger.error("Selected airline object not exist.");
-			throw new PlaneServiceException(PlaneServiceErrorCodes.REQUESTED_GET_AIRLINE_OBJECT_NOT_EXIST);
+			throw new PlaneServiceException(PlaneServiceErrorCodes.AIRLINE_REQUESTED_GET_OBJECT_NOT_EXIST);
 		}
 
 		AirlineModelInterface selectedAirline = mapper.map(dbObject, Airline.class);
@@ -79,11 +79,14 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 		logger.info("Airline service processor deleteAirlineById method get the request, request id: " + id);
 
 		logger.info("Delete airline by id.");
-		AirlineModelInterface deletedAirline = mapper.map(airlinesDbInterface.deleteAirlineById(id), Airline.class);
+		Boolean isSuccesDelete = airlinesDbInterface.deleteAirlineById(id);
 
-		if (deletedAirline == null) {
+		if (isSuccesDelete == null) {
+			logger.error("Error under delete airline.");
+			throw new PlaneServiceException(PlaneServiceErrorCodes.AIRLINE_UNKNOWN_DELETE_ERROR);
+		} else if (isSuccesDelete == false) {
 			logger.error("Requested delete airline object not exist.");
-			throw new PlaneServiceException(PlaneServiceErrorCodes.REQUESTED_DELETE_OBJECT_NOT_EXIST);
+			throw new PlaneServiceException(PlaneServiceErrorCodes.AIRLINE_REQUESTED_DELETE_OBJECT_NOT_EXIST);
 		}
 
 		logger.info("Delete was success");

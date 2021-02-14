@@ -1,13 +1,15 @@
 package eng.airlines.db.implement;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.dozer.DozerBeanMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import eng.airlines.db.dao.AirlinesDAO;
 import eng.airlines.db.dto.AirlinesDto;
 import eng.airlines.db.interfaces.AirlinesDbInterface;
 import eng.airlines.model.interfaces.AirlineModelInterface;
@@ -15,57 +17,58 @@ import eng.airlines.model.interfaces.AirlineModelInterface;
 @Service
 public class AirlinesDbImplement implements AirlinesDbInterface {
 
-	private Map<Long, AirlineModelInterface> airlinesDb;
 
-	private Long lastId;
+	@Autowired
+	private AirlinesDAO airlinesDAO;
 
 	DozerBeanMapper mapper;
 
 	public AirlinesDbImplement() {
-		this.airlinesDb = new HashMap<Long, AirlineModelInterface>();
-		this.lastId = 0L;
 		this.mapper = new DozerBeanMapper();
 	}
 
 	@Override
-	public List<AirlineModelInterface> findAllAirline() {
-		return airlinesDb.values().stream().collect(Collectors.toList());
+	public List<? extends AirlineModelInterface> findAllAirline() {
+
+		List<AirlinesDto> airlines = new ArrayList<AirlinesDto>();
+		airlinesDAO.findAll().forEach(airlines::add);
+
+		return airlines;
+
 	}
 
 	@Override
 	public AirlineModelInterface findAirlineById(Long id) {
-		return airlinesDb.getOrDefault(id, null);
+
+		Optional<AirlinesDto> airlinesObject = airlinesDAO.findById(id);
+		if (airlinesObject.isPresent()) {
+			return airlinesObject.get();
+		}
+
+		return null;
 	}
 
 	@Override
 	public AirlineModelInterface saveAirline(AirlineModelInterface airline) {
 
 		AirlinesDto dbObject = mapper.map(airline, AirlinesDto.class);
+		return airlinesDAO.save(dbObject);
 
-		Long id = dbObject.getId();
-
-		if (id == null) {
-			id = lastId;
-			lastId++;
-			dbObject.setId(id);
-		} else if (!airlinesDb.containsKey(id)) {
-			// TODO throw error???
-		}
-
-		airlinesDb.put(id, dbObject);
-
-		return airlinesDb.get(id);
 	}
 	
 	/*
-	 * Return true if deleted, Return false if not deleted
+	 * Return true if deleted, Return false if not deleted, Return null if error
 	 */
 	@Override
 	public Boolean deleteAirlineById(Long id) {
-		if (airlinesDb.remove(id) == null) {
+		try {
+			airlinesDAO.deleteById(id);
+			return true;
+		} catch (EmptyResultDataAccessException emptyException) {
 			return false;
+		} catch (Exception e) {
+			return null;
 		}
-		return true;
 	}
 
 }

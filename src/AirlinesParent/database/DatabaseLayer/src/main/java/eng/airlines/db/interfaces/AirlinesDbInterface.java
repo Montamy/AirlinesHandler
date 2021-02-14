@@ -6,7 +6,7 @@ import eng.airlines.model.interfaces.AirlineModelInterface;
 
 public interface AirlinesDbInterface {
 
-	List<AirlineModelInterface> findAllAirline();
+	List<? extends AirlineModelInterface> findAllAirline();
 
 	AirlineModelInterface findAirlineById(Long id);
 

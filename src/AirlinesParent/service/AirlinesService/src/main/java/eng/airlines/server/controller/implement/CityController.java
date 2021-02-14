@@ -14,32 +14,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import eng.airlines.model.interfaces.AirlineModelInterface;
+import eng.airlines.model.interfaces.CityModelInterface;
 import eng.airlines.server.ControllerPath;
-import eng.airlines.server.controller.interfaces.AirlineControllerInterface;
+import eng.airlines.server.controller.interfaces.CityControllerInterface;
 import eng.airlines.server.error.ErrorResponse;
 import eng.airlines.server.error.PlaneServiceErrorCodes;
 import eng.airlines.server.error.PlaneServiceException;
 import eng.airlines.server.model.Response;
-import eng.airlines.server.processor.interfaces.AirlineServiceProcessorInterface;
+import eng.airlines.server.processor.interfaces.CityServiceProcessorInterface;
 import eng.airlines.server.validator.PlaneServiceValidatorInterface;
 
 @Controller
 @RequestMapping(ControllerPath.BASE_PATH)
-public class AirlineController implements AirlineControllerInterface {
+public class CityController implements CityControllerInterface {
 
-	public static final String AIRLINE_PATH = "/airline";
+	public static final String CITY_PATH = "/city";
 
-	private static Logger logger = LogManager.getLogger(AirlineController.class);
+	private static Logger logger = LogManager.getLogger(CityController.class);
 
 	@Autowired
 	private PlaneServiceValidatorInterface validator;
 
 	@Autowired
-	private AirlineServiceProcessorInterface processor;
+	private CityServiceProcessorInterface processor;
 
-	@RequestMapping(value = AIRLINE_PATH, method = RequestMethod.GET, produces = { "application/json" })
-	public ResponseEntity<List<AirlineModelInterface>> findAllAirline(
+	@RequestMapping(value = CITY_PATH, method = RequestMethod.GET, produces = { "application/json" })
+	public ResponseEntity<List<CityModelInterface>> findAllCity(
 
 			// Header
 
@@ -47,16 +47,16 @@ public class AirlineController implements AirlineControllerInterface {
 
 			) throws PlaneServiceException, Exception {
 
-		logger.info("Call processor's findAllAirline method.");
-		List<AirlineModelInterface> resp = processor.findAllAirline();
+				logger.info("Call processor's findAllCity method.");
+				List<CityModelInterface> resp = processor.findAllCity();
 
 		logger.debug("Return result: " + resp);
 		return new ResponseEntity<>(resp, HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = AIRLINE_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
-	public ResponseEntity<AirlineModelInterface> findAirlineById(
+	@RequestMapping(value = CITY_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
+	public ResponseEntity<CityModelInterface> findCityById(
 
 			// Header
 
@@ -65,36 +65,36 @@ public class AirlineController implements AirlineControllerInterface {
 
 	) throws PlaneServiceException, Exception {
 
-		logger.info("Call processor's findAirlineById method.");
-		AirlineModelInterface resp = processor.findAirlineById(id);
+		logger.info("Call processor's findCityById method.");
+		CityModelInterface resp = processor.findCityById(id);
 
 		logger.debug("Return result: " + resp);
 		return new ResponseEntity<>(resp, HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = AIRLINE_PATH, method = RequestMethod.POST, produces = { "application/json" })
-	public ResponseEntity<AirlineModelInterface> saveAirline(
+	@RequestMapping(value = CITY_PATH, method = RequestMethod.POST, produces = { "application/json" })
+	public ResponseEntity<CityModelInterface> saveCity(
 
 			// Header
 
 			// Path
 
 			// Body
-			@RequestBody AirlineModelInterface airline
+			@RequestBody CityModelInterface city
 
 	) throws PlaneServiceException, Exception {
 
-		logger.info("Call processor's saveAirline method with airline: " + airline);
-		AirlineModelInterface resp = processor.saveAirline(airline);
+		logger.info("Call processor's saveCity method with city: " + city);
+		CityModelInterface resp = processor.saveCity(city);
 
 		logger.debug("Return result: " + resp);
 		return new ResponseEntity<>(resp, HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = AIRLINE_PATH + "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
-	public ResponseEntity<Response> deleteAirline(
+	@RequestMapping(value = CITY_PATH, method = RequestMethod.DELETE, produces = { "application/json" })
+	public ResponseEntity<Response> deleteCity(
 			// Header
 
 			// Path
@@ -102,12 +102,12 @@ public class AirlineController implements AirlineControllerInterface {
 
 	) throws PlaneServiceException, Exception {
 
-		logger.info("Call processor's deleteAirlineById method.");
-		Boolean isSuccesDelete = processor.deleteAirlineById(id);
+		logger.info("Call processor's deleteCityById method.");
+		Boolean isSuccesDelete = processor.deleteCityById(id);
 
 		if (!isSuccesDelete) {
-			logger.error("Unhandler error under deleteAirlineById.");
-			throw new PlaneServiceException(PlaneServiceErrorCodes.AIRLINE_UNHNADLED_DELETE_ERROR);
+			logger.error("Unhandler error under deleteCityById.");
+			throw new PlaneServiceException(PlaneServiceErrorCodes.CITY_UNHNADLED_DELETE_ERROR);
 		}
 
 		logger.debug("Delete result was succes. ");

@@ -8,9 +8,17 @@ public enum PlaneServiceErrorCodes {
 	INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, " Internal server error", "Kérjük vegye fel a kapcsolatot a szupportal."),
 
 	// airline service
+	AIRLINE_UNKNOWN_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete airline.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 	AIRLINE_UNHNADLED_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete airline.", "Kérjük vegye fel a kapcsolatot a szupportal."),
-	REQUESTED_DELETE_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested airline not exist, can not delete.", "A kért törlés nem történt meg, mivel a választott objekt nem létezik"),
-	REQUESTED_GET_AIRLINE_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested airline not exist, can not get it.", "A kért airline objekt nem létezik"),
+	AIRLINE_REQUESTED_DELETE_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested airline not exist, can not delete.", "A kért törlés nem történt meg, mivel a választott objekt nem létezik"),
+	AIRLINE_REQUESTED_GET_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested airline not exist, can not get it.", "A kért airline objekt nem létezik"),
+	
+	// city service
+	CITY_UNKNOWN_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete city.", "Kérjük vegye fel a kapcsolatot a szupportal."),
+	CITY_UNHNADLED_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete city.", "Kérjük vegye fel a kapcsolatot a szupportal."),
+	CITY_REQUESTED_DELETE_CITY_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested city not exist, can not delete.", "A kért törlés nem történt meg, mivel a választott objekt nem létezik"),
+	CITY_REQUESTED_GET_CITY_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested city not exist, can not get it.", "A kért city objekt nem létezik"),
+
 
 	;
 
