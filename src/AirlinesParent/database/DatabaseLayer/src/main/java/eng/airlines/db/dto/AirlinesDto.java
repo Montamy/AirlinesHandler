@@ -7,6 +7,10 @@ public class AirlinesDto implements AirlineModelInterface {
 	private Long id;
 	private String name;
 
+	public AirlinesDto() {
+
+	}
+
 	public Long getId() {
 		return id;
 	}

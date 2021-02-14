@@ -13,6 +13,16 @@ public class Flight extends BaseDbModel implements FlightModelInterface {
 	private Integer distance;
 	private Integer scheduleMin;
 
+	public Flight(Long id, AirlineModelInterface airline, CityModelInterface sourceCity, CityModelInterface destinationCity, Integer distance, Integer scheduleMin) {
+		super(id);
+
+		this.airline = airline;
+		this.sourceCity = sourceCity;
+		this.destinationCity = destinationCity;
+		this.distance = distance;
+		this.scheduleMin = scheduleMin;
+	}
+
 	public AirlineModelInterface getAirline() {
 		return airline;
 	}

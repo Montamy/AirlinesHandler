@@ -7,6 +7,15 @@ public class Airline extends BaseDbModel implements AirlineModelInterface {
 
 	private String name;
 
+	public Airline() {
+
+	}
+
+	public Airline(Long id, String name) {
+		super(id);
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}
