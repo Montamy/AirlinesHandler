@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 
 import eng.airlines.server.model.City;
 
-public class CitiesEntityDeserializer extends NamedEntityDeserializer<City> {
+public class CitiesEntityDeserializer extends BaseEntityDeserializer<City> {
 
 	@Override
 	public City deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
@@ -17,7 +17,7 @@ public class CitiesEntityDeserializer extends NamedEntityDeserializer<City> {
 		Map<String, Object> requestParsingObjectMap = createRequestObjectPropertyMap(jsonParser); 
 
 		Long id = getIdFromMap(requestParsingObjectMap);
-		String name = getNameFromPropertiesMap(requestParsingObjectMap);
+		String name = getStringFromPropertiesMapByPropertyName("name", requestParsingObjectMap);
 		Long population = getPopulationFromProperties(requestParsingObjectMap);
 
 		City city = new City(id, name, population);

@@ -10,8 +10,10 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import eng.airlines.model.interfaces.AirlineModelInterface;
 import eng.airlines.model.interfaces.CityModelInterface;
+import eng.airlines.model.interfaces.FlightModelInterface;
 import eng.airlines.server.deserializer.AirlinesEntityDeserializer;
 import eng.airlines.server.deserializer.CitiesEntityDeserializer;
+import eng.airlines.server.deserializer.FlightsEntityDeserializer;
 
 
 @SpringBootApplication
@@ -35,6 +37,13 @@ public class PlaneServiceApplication {
 	public SimpleModule cityEntityDeserializer() {
 		SimpleModule module = new SimpleModule();
 		module.addDeserializer(CityModelInterface.class, new CitiesEntityDeserializer());
+		return module;
+	}
+
+	@Bean
+	public SimpleModule flightEntityDeserializer() {
+		SimpleModule module = new SimpleModule();
+		module.addDeserializer(FlightModelInterface.class, new FlightsEntityDeserializer());
 		return module;
 	}
 

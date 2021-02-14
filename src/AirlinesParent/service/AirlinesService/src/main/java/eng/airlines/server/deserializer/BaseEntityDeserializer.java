@@ -12,16 +12,38 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public abstract class BaseEntityDeserializer<T> extends JsonDeserializer<T> {
 
+
+
 	protected Long getIdFromMap(Map<String, Object> requestParsingObjectMap) {
+		return getLongFromMapByItsName("id", requestParsingObjectMap);
+	}
 
-		Long resultId = null;
+	protected String getStringFromPropertiesMapByPropertyName(String propertyName, Map<String, Object> requestParsingObjectMap) {
+		return requestParsingObjectMap.getOrDefault(propertyName, "").toString();
+	}
 
-		Object idObject = requestParsingObjectMap.getOrDefault("id", null);
+	protected Long getLongFromMapByItsName(String propertyName, Map<String, Object> requestParsingObjectMap) {
+
+		Long result = null;
+
+		Object idObject = requestParsingObjectMap.getOrDefault(propertyName, null);
 		if (idObject != null) {
-			resultId = Long.parseLong(idObject.toString());
+			result = Long.parseLong(idObject.toString());
 		}
 
-		return resultId;
+		return result;
+	}
+
+	protected Integer getIntegerFromMapByItsName(String propertyName, Map<String, Object> requestParsingObjectMap) {
+
+		Integer result = null;
+
+		Object idObject = requestParsingObjectMap.getOrDefault(propertyName, null);
+		if (idObject != null) {
+			result = Integer.parseInt(idObject.toString());
+		}
+
+		return result;
 	}
 
 	protected Map<String, Object> createRequestObjectPropertyMap(JsonParser jsonParser) throws IOException {
@@ -30,7 +52,9 @@ public abstract class BaseEntityDeserializer<T> extends JsonDeserializer<T> {
 
 		ObjectCodec oc = jsonParser.getCodec();
 		JsonNode node = oc.readTree(jsonParser);
-		
-		return mapper.convertValue(node, new TypeReference<Map<String, Object>>() {});
+
+		return mapper.convertValue(node, new TypeReference<Map<String, Object>>() {
+		});
 	}
+
 }

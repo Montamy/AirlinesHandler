@@ -91,7 +91,7 @@ public class CityServiceProcessor implements CityServiceProcessorInterface {
 			throw new PlaneServiceException(PlaneServiceErrorCodes.CITY_UNKNOWN_DELETE_ERROR);
 		} else if (isSuccesDelete == false) {
 			logger.error("Requested delete city object not exist.");
-			throw new PlaneServiceException(PlaneServiceErrorCodes.CITY_REQUESTED_DELETE_CITY_OBJECT_NOT_EXIST);
+			throw new PlaneServiceException(PlaneServiceErrorCodes.CITY_REQUESTED_DELETE_OBJECT_NOT_EXIST);
 		}
 
 		logger.info("Delete was success");
