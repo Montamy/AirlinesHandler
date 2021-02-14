@@ -9,6 +9,8 @@ public enum PlaneServiceErrorCodes {
 
 	// airline service
 	AIRLINE_UNHNADLED_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete airline.", "Kérjük vegye fel a kapcsolatot a szupportal."),
+	REQUESTED_DELETE_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested airline not exist, can not delete.", "A kért törlés nem történt meg, mivel a választott objekt nem létezik"),
+	REQUESTED_GET_AIRLINE_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested airline not exist, can not get it.", "A kért airline objekt nem létezik"),
 
 	;
 
