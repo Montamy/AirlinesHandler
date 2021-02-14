@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 
+import eng.airlines.db.dto.AirlinesDto;
 import eng.airlines.db.interfaces.AirlinesDbInterface;
 import eng.airlines.model.interfaces.AirlineModelInterface;
 
@@ -17,9 +19,12 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 
 	private Long lastId;
 
+	DozerBeanMapper mapper;
+
 	public AirlinesDbImplement() {
 		this.airlinesDb = new HashMap<Long, AirlineModelInterface>();
 		this.lastId = 0L;
+		this.mapper = new DozerBeanMapper();
 	}
 
 	@Override
@@ -34,16 +39,22 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 
 	@Override
 	public AirlineModelInterface saveAirline(AirlineModelInterface airline) {
-		Long id = airline.getId();
+
+		AirlinesDto dbObject = mapper.map(airline, AirlinesDto.class);
+
+		Long id = dbObject.getId();
 
 		if (id == null) {
 			id = lastId;
 			lastId++;
+			dbObject.setId(id);
 		} else if (!airlinesDb.containsKey(id)) {
 			// TODO throw error???
 		}
 
-		return airlinesDb.put(id, airline);
+		airlinesDb.put(id, dbObject);
+
+		return airlinesDb.get(id);
 	}
 	
 	/*
