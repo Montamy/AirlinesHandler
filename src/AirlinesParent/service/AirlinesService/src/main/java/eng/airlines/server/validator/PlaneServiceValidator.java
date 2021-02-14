@@ -1,5 +1,8 @@
 package eng.airlines.server.validator;
 
-public class PlaneServiceValidator {
+import org.springframework.stereotype.Service;
+
+@Service
+public class PlaneServiceValidator implements PlaneServiceValidatorInterface {
 
 }
