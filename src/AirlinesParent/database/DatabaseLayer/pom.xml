@@ -4,25 +4,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>eng.airlines</groupId>
-		<artifactId>service</artifactId>
+		<artifactId>database</artifactId>
 		<version>0.0.1</version>
 		<relativePath>../</relativePath>
 	</parent>
 	
-	<artifactId>AirlinesService</artifactId>
-	<name>AirlinesService</name>
-	<description>Airlines project airline, city, flight micro service</description>
+	<artifactId>DatabaseLayer</artifactId>
+	<name>DatabaseLayer</name>
+	<description>Database layer of airlines projekt</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -32,20 +26,23 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<version>${project.version}</version>
-			<artifactId>DatabaseLayer</artifactId>
+    		 <groupId>net.sf.dozer</groupId>
+  		 	 <artifactId>dozer</artifactId>
+   			 <version>5.5.1</version>
 		</dependency>
-		
 
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
