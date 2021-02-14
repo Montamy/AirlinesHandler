@@ -20,7 +20,6 @@ import eng.airlines.server.controller.interfaces.AirlineControllerInterface;
 import eng.airlines.server.error.ErrorResponse;
 import eng.airlines.server.error.PlaneServiceErrorCodes;
 import eng.airlines.server.error.PlaneServiceException;
-import eng.airlines.server.model.Airline;
 import eng.airlines.server.model.Response;
 import eng.airlines.server.processor.interfaces.AirlineServiceProcessorInterface;
 import eng.airlines.server.validator.PlaneServiceValidatorInterface;
@@ -82,7 +81,7 @@ public class AirlineController implements AirlineControllerInterface {
 			// Path
 
 			// Body
-			@RequestBody Airline airline
+			@RequestBody AirlineModelInterface airline
 
 	) throws PlaneServiceException, Exception {
 
