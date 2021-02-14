@@ -4,7 +4,11 @@ import org.springframework.http.HttpStatus;
 
 public enum PlaneServiceErrorCodes {
 
-	INTERNAL_SERVER_ERROR(HttpStatus.BAD_REQUEST, 500, " Internal server error", "Kezeletlen hiba, kérjük vegye fel a kapcsolatot a szupportal."),
+	// general
+	INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, " Internal server error", "Kérjük vegye fel a kapcsolatot a szupportal."),
+
+	// airline service
+	AIRLINE_UNHNADLED_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete airline.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 
 	;
 

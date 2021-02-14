@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,20 +41,76 @@ public class AirlineController {
 
 			// Header
 
-			// PATH
+			// Path
 
 			) throws PlaneServiceException, Exception {
-
-		logger.info("Validating findAllAirline request. ");
-		// TODO validator.checkRequest();
-
 
 		logger.info("Call processor's findAllAirline method.");
 		List<Airline> resp = processor.findAllAirline();
 
 		logger.debug("Return result: " + resp);
-
 		return new ResponseEntity<>(resp, HttpStatus.OK);
+
+	}
+
+	@RequestMapping(value = AIRLINE_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
+	public ResponseEntity<Airline> findAirlineById(
+
+			// Header
+
+			// Path
+			@PathVariable("id") Long id
+
+	) throws PlaneServiceException, Exception {
+
+		logger.info("Call processor's findAirlineById method.");
+		Airline resp = processor.findAirlineById(id);
+
+		logger.debug("Return result: " + resp);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
+
+	}
+
+	@RequestMapping(value = AIRLINE_PATH, method = RequestMethod.POST, produces = { "application/json" })
+	public ResponseEntity<Airline> saveAirline(
+
+			// Header
+
+			// Path
+
+			// Body
+			@RequestBody Airline airline
+
+	) throws PlaneServiceException, Exception {
+
+		logger.info("Call processor's saveAirline method with airline: " + airline);
+		Airline resp = processor.saveAirline(airline);
+
+		logger.debug("Return result: " + resp);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
+
+	}
+
+	@RequestMapping(value = AIRLINE_PATH, method = RequestMethod.DELETE, produces = { "application/json" })
+	public ResponseEntity<Integer> deleteAirline( // TODO
+
+			// Header
+
+			// Path
+			@PathVariable("id") Long id
+
+	) throws PlaneServiceException, Exception {
+
+		logger.info("Call processor's deleteAirlineById method.");
+		Boolean isSuccesDelete = processor.deleteAirlineById(id);
+
+		if (!isSuccesDelete) {
+			logger.error("Error under deleteAirlineById.");
+			throw new PlaneServiceException(PlaneServiceErrorCodes.AIRLINE_UNHNADLED_DELETE_ERROR);
+		}
+
+		logger.debug("Delete result was succes. ");
+		return new ResponseEntity<Integer>(1, HttpStatus.OK); // TODO
 
 	}
 
