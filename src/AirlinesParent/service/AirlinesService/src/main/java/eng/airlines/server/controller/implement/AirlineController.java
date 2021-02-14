@@ -1,4 +1,4 @@
-package eng.airlines.server.controller;
+package eng.airlines.server.controller.implement;
 
 import java.util.List;
 
@@ -15,16 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import eng.airlines.server.ControllerPath;
+import eng.airlines.server.controller.interfaces.AirlineControllerInterface;
 import eng.airlines.server.error.ErrorResponse;
 import eng.airlines.server.error.PlaneServiceErrorCodes;
 import eng.airlines.server.error.PlaneServiceException;
 import eng.airlines.server.model.Airline;
+import eng.airlines.server.model.Response;
 import eng.airlines.server.processor.PlaneServiceProcessor;
 import eng.airlines.server.validator.PlaneServiceValidatorInterface;
 
 @Controller
 @RequestMapping(ControllerPath.BASE_PATH)
-public class AirlineController {
+public class AirlineController implements AirlineControllerInterface {
 
 	public static final String AIRLINE_PATH = "/airline";
 
@@ -92,8 +94,7 @@ public class AirlineController {
 	}
 
 	@RequestMapping(value = AIRLINE_PATH, method = RequestMethod.DELETE, produces = { "application/json" })
-	public ResponseEntity<Integer> deleteAirline( // TODO
-
+	public ResponseEntity<Response> deleteAirline(
 			// Header
 
 			// Path
@@ -105,13 +106,23 @@ public class AirlineController {
 		Boolean isSuccesDelete = processor.deleteAirlineById(id);
 
 		if (!isSuccesDelete) {
-			logger.error("Error under deleteAirlineById.");
+			logger.error("Unhandler error under deleteAirlineById.");
 			throw new PlaneServiceException(PlaneServiceErrorCodes.AIRLINE_UNHNADLED_DELETE_ERROR);
 		}
 
 		logger.debug("Delete result was succes. ");
-		return new ResponseEntity<Integer>(1, HttpStatus.OK); // TODO
+		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK); // TODO
 
+	}
+
+	private Response createOkREsponse() {
+		Response response = new Response();
+
+		response.setDetail("Success delete.");
+		response.setStatus(200);
+		response.setTitle("Success delete.");
+
+		return response;
 	}
 
 	@ExceptionHandler(PlaneServiceException.class)

@@ -4,6 +4,11 @@ import org.springframework.http.HttpStatus;
 
 public class PlaneServiceException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2659809542041908419L;
+
 	private HttpStatus httpStatus;
 	private Integer errorCode;
 	private String description;

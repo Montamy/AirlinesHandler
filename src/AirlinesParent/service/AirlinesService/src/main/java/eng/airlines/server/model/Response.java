@@ -1,4 +1,4 @@
-package eng.airlines.server.error;
+package eng.airlines.server.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
