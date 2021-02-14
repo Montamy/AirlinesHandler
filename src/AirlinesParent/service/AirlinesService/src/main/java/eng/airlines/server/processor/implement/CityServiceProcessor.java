@@ -64,13 +64,19 @@ public class CityServiceProcessor implements CityServiceProcessorInterface {
 
 	@Override
 	public CityModelInterface saveCity(CityModelInterface city) throws PlaneServiceException {
-		logger.info("City service processor saveCity method get the request, request save object: " + city);
 
-		logger.info("Save city.");
-		CityModelInterface savedCity = mapper.map(citysDbInterface.saveCity(city), City.class);
+		try {
+			logger.info("City service processor saveCity method get the request, request save object: " + city);
 
-		logger.info("Return saved city.");
-		return savedCity;
+			logger.info("Save city.");
+			CityModelInterface savedCity = mapper.map(citysDbInterface.saveCity(city), City.class);
+
+			logger.info("Return saved city.");
+			return savedCity;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override

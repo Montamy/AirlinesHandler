@@ -8,6 +8,10 @@ public class City extends BaseDbModel implements CityModelInterface {
 	private String name;
 	private Long population;
 
+	public City() {
+
+	}
+
 	public City(Long id, String name, Long population) {
 		super(id);
 		this.name = name;

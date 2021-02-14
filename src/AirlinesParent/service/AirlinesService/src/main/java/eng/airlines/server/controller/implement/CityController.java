@@ -93,7 +93,7 @@ public class CityController implements CityControllerInterface {
 
 	}
 
-	@RequestMapping(value = CITY_PATH, method = RequestMethod.DELETE, produces = { "application/json" })
+	@RequestMapping(value = CITY_PATH + "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
 	public ResponseEntity<Response> deleteCity(
 			// Header
 

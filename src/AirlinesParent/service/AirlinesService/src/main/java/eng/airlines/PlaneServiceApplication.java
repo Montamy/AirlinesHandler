@@ -9,7 +9,10 @@ import org.springframework.context.annotation.Bean;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import eng.airlines.model.interfaces.AirlineModelInterface;
-import eng.airlines.server.AirlinesEntityDeserializer;
+import eng.airlines.model.interfaces.CityModelInterface;
+import eng.airlines.server.deserializer.AirlinesEntityDeserializer;
+import eng.airlines.server.deserializer.CitiesEntityDeserializer;
+
 
 @SpringBootApplication
 public class PlaneServiceApplication {
@@ -22,10 +25,18 @@ public class PlaneServiceApplication {
 	}
 
 	@Bean
-	public SimpleModule dynamoDemoEntityDeserializer() {
+	public SimpleModule airlinesEntityDeserializer() {
 		SimpleModule module = new SimpleModule();
 		module.addDeserializer(AirlineModelInterface.class, new AirlinesEntityDeserializer());
 		return module;
 	}
+
+	@Bean
+	public SimpleModule cityEntityDeserializer() {
+		SimpleModule module = new SimpleModule();
+		module.addDeserializer(CityModelInterface.class, new CitiesEntityDeserializer());
+		return module;
+	}
+
 
 }

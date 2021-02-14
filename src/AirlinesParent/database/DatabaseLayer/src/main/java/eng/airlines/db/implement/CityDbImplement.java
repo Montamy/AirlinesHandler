@@ -1,12 +1,16 @@
 package eng.airlines.db.implement;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import eng.airlines.db.dao.AirlinesDAO;
+import eng.airlines.db.dao.CityDAO;
+import eng.airlines.db.dto.CityDto;
 import eng.airlines.db.interfaces.CityDbInterface;
 import eng.airlines.model.interfaces.CityModelInterface;
 
@@ -15,7 +19,7 @@ public class CityDbImplement implements CityDbInterface {
 
 
 	@Autowired
-	private AirlinesDAO airlinesDAO;
+	private CityDAO citysDAO;
 
 	DozerBeanMapper mapper;
 
@@ -24,27 +28,47 @@ public class CityDbImplement implements CityDbInterface {
 	}
 
 	@Override
-	public List<CityModelInterface> findAllCity() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<? extends CityModelInterface> findAllCity() {
+
+		List<CityDto> citys = new ArrayList<CityDto>();
+		citysDAO.findAll().forEach(citys::add);
+
+		return citys;
+
 	}
 
 	@Override
 	public CityModelInterface findCityById(Long id) {
-		// TODO Auto-generated method stub
+
+		Optional<CityDto> citysObject = citysDAO.findById(id);
+		if (citysObject.isPresent()) {
+			return citysObject.get();
+		}
+
 		return null;
 	}
 
 	@Override
-	public CityModelInterface saveCity(CityModelInterface airline) {
-		// TODO Auto-generated method stub
-		return null;
+	public CityModelInterface saveCity(CityModelInterface city) {
+
+		CityDto dbObject = mapper.map(city, CityDto.class);
+		return citysDAO.save(dbObject);
+
 	}
 
+	/*
+	 * Return true if deleted, Return false if not deleted, Return null if error
+	 */
 	@Override
 	public Boolean deleteCityById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			citysDAO.deleteById(id);
+			return true;
+		} catch (EmptyResultDataAccessException emptyException) {
+			return false;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

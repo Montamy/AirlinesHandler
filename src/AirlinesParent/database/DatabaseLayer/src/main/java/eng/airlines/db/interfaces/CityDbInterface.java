@@ -6,7 +6,7 @@ import eng.airlines.model.interfaces.CityModelInterface;
 
 public interface CityDbInterface {
 
-	List<CityModelInterface> findAllCity();
+	List<? extends CityModelInterface> findAllCity();
 
 	CityModelInterface findCityById(Long id);
 
