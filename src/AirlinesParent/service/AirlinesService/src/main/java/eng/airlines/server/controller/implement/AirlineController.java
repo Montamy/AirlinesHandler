@@ -89,7 +89,7 @@ public class AirlineController implements AirlineControllerInterface {
 		AirlineModelInterface resp = processor.saveAirline(airline);
 
 		logger.debug("Return result: " + resp);
-		return new ResponseEntity<>(resp, HttpStatus.OK);
+		return new ResponseEntity<>(resp, HttpStatus.CREATED);
 
 	}
 

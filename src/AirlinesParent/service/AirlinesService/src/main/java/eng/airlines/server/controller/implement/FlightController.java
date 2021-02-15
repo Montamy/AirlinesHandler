@@ -89,7 +89,7 @@ public class FlightController implements FlightControllerInterface {
 		FlightModelInterface resp = processor.saveFlight(flight);
 
 		logger.debug("Return result: " + resp);
-		return new ResponseEntity<>(resp, HttpStatus.OK);
+		return new ResponseEntity<>(resp, HttpStatus.CREATED);
 
 	}
 

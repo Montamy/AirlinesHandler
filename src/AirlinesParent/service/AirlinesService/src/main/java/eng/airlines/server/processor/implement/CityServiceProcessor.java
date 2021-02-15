@@ -1,13 +1,20 @@
 package eng.airlines.server.processor.implement;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import eng.airlines.db.interfaces.CityDbInterface;
 import eng.airlines.model.interfaces.CityModelInterface;
@@ -20,6 +27,8 @@ import eng.airlines.server.processor.interfaces.CityServiceProcessorInterface;
 public class CityServiceProcessor implements CityServiceProcessorInterface {
 
 	private static Logger logger = LogManager.getLogger(CityServiceProcessor.class);
+
+	private static String FILE_CITY_PROPERTY_SEPARATOR = ";";
 
 	@Autowired
 	private CityDbInterface citysDbInterface;
@@ -97,6 +106,34 @@ public class CityServiceProcessor implements CityServiceProcessorInterface {
 		logger.info("Delete was success");
 		return true;
 
+	}
+
+	@Transactional
+	@Override
+	public Boolean uploadCities(MultipartFile city_file) throws PlaneServiceException {
+		try {
+			ByteArrayInputStream bis = new ByteArrayInputStream(city_file.getBytes());
+			String line = null;
+
+			try (BufferedReader br = new BufferedReader(new InputStreamReader(bis))) {
+				while ((line = br.readLine()) != null) {
+					saveCity(createCityFromLine(line)); // szebb lenne csinálni egy city listet és egybe menteni, idő hiányábane zt most
+														// nem teszem bele
+				}
+			} catch (Exception e) {
+				logger.error("Error under read input file.");
+				throw new PlaneServiceException(PlaneServiceErrorCodes.CITY_UPLOAD_ERROR_UNDER_READ_INPUT_FILE);
+			}
+		} catch (IOException ioe) {
+			logger.error("Error under read input file.");
+			throw new PlaneServiceException(PlaneServiceErrorCodes.CITY_UPLOAD_ERROR_UNDER_READ_INPUT_FILE);
+		}
+		return true;
+	}
+
+	private CityModelInterface createCityFromLine(String line) {
+		String[] splitedLine = line.split(FILE_CITY_PROPERTY_SEPARATOR);
+		return new City(null, splitedLine[0], Long.parseLong(splitedLine[1]));
 	}
 
 }
