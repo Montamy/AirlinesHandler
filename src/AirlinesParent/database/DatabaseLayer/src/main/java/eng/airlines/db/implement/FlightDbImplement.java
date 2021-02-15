@@ -28,7 +28,7 @@ public class FlightDbImplement implements FlightDbInterface {
 	}
 
 	@Override
-	public List<? extends FlightModelInterface> findAllFlight() {
+	public List<? extends FlightModelInterface> findAll() {
 
 		List<FlightDto> flights = new ArrayList<FlightDto>();
 		flightsDAO.findAll().forEach(flights::add);
@@ -38,7 +38,7 @@ public class FlightDbImplement implements FlightDbInterface {
 	}
 
 	@Override
-	public FlightModelInterface findFlightById(Long id) {
+	public FlightModelInterface findById(Long id) {
 
 		Optional<FlightDto> flightsObject = flightsDAO.findById(id);
 		if (flightsObject.isPresent()) {
@@ -49,7 +49,7 @@ public class FlightDbImplement implements FlightDbInterface {
 	}
 
 	@Override
-	public FlightModelInterface saveFlight(FlightModelInterface flight) {
+	public FlightModelInterface save(FlightModelInterface flight) {
 
 		try {
 			FlightDto dbObject = mapper.map(flight, FlightDto.class);
@@ -65,7 +65,7 @@ public class FlightDbImplement implements FlightDbInterface {
 	 * Return true if deleted, Return false if not deleted, Return null if error
 	 */
 	@Override
-	public Boolean deleteFlightById(Long id) {
+	public Boolean deleteById(Long id) {
 		try {
 			flightsDAO.deleteById(id);
 			return true;

@@ -28,7 +28,7 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 	}
 
 	@Override
-	public List<? extends AirlineModelInterface> findAllAirline() {
+	public List<? extends AirlineModelInterface> findAll() {
 
 		List<AirlinesDto> airlines = new ArrayList<AirlinesDto>();
 		airlinesDAO.findAll().forEach(airlines::add);
@@ -38,7 +38,7 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 	}
 
 	@Override
-	public AirlineModelInterface findAirlineById(Long id) {
+	public AirlineModelInterface findById(Long id) {
 
 		Optional<AirlinesDto> airlinesObject = airlinesDAO.findById(id);
 		if (airlinesObject.isPresent()) {
@@ -49,7 +49,7 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 	}
 
 	@Override
-	public AirlineModelInterface saveAirline(AirlineModelInterface airline) {
+	public AirlineModelInterface save(AirlineModelInterface airline) {
 
 		AirlinesDto dbObject = mapper.map(airline, AirlinesDto.class);
 		return airlinesDAO.save(dbObject);
@@ -60,7 +60,7 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 	 * Return true if deleted, Return false if not deleted, Return null if error
 	 */
 	@Override
-	public Boolean deleteAirlineById(Long id) {
+	public Boolean deleteById(Long id) {
 		try {
 			airlinesDAO.deleteById(id);
 			return true;
@@ -69,6 +69,11 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public AirlineModelInterface findByName(String name) {
+		return airlinesDAO.findByName(name);
 	}
 
 }

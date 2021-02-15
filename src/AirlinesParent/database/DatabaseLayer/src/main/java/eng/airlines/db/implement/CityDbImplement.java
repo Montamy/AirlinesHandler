@@ -28,7 +28,7 @@ public class CityDbImplement implements CityDbInterface {
 	}
 
 	@Override
-	public List<? extends CityModelInterface> findAllCity() {
+	public List<? extends CityModelInterface> findAll() {
 
 		List<CityDto> citys = new ArrayList<CityDto>();
 		citysDAO.findAll().forEach(citys::add);
@@ -38,7 +38,7 @@ public class CityDbImplement implements CityDbInterface {
 	}
 
 	@Override
-	public CityModelInterface findCityById(Long id) {
+	public CityModelInterface findById(Long id) {
 
 		Optional<CityDto> citysObject = citysDAO.findById(id);
 		if (citysObject.isPresent()) {
@@ -49,7 +49,7 @@ public class CityDbImplement implements CityDbInterface {
 	}
 
 	@Override
-	public CityModelInterface saveCity(CityModelInterface city) {
+	public CityModelInterface save(CityModelInterface city) {
 
 		CityDto dbObject = mapper.map(city, CityDto.class);
 		return citysDAO.save(dbObject);
@@ -60,7 +60,7 @@ public class CityDbImplement implements CityDbInterface {
 	 * Return true if deleted, Return false if not deleted, Return null if error
 	 */
 	@Override
-	public Boolean deleteCityById(Long id) {
+	public Boolean deleteById(Long id) {
 		try {
 			citysDAO.deleteById(id);
 			return true;
@@ -69,6 +69,11 @@ public class CityDbImplement implements CityDbInterface {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public CityModelInterface findByName(String name) {
+		return citysDAO.findByName(name);
 	}
 
 }

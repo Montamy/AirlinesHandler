@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import eng.airlines.model.interfaces.FlightModelInterface;
 import eng.airlines.server.ControllerPath;
@@ -115,12 +118,36 @@ public class FlightController implements FlightControllerInterface {
 
 	}
 
+	@RequestMapping(value = ControllerPath.UPLOAD_PATH + FLIGHT_PATH, method = RequestMethod.POST, produces = { "application/json" },
+
+			consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	public ResponseEntity<Response> uploadFlight(
+			// Header
+
+			// Path
+			@RequestParam("flight_file") MultipartFile flight_file
+
+	) throws PlaneServiceException, Exception {
+
+		logger.info("Call processor's uploadFlights method.");
+		Boolean isSuccesUpload = processor.uploadFlights(flight_file);
+
+		if (!isSuccesUpload) {
+			logger.error("Unhandler error under uploadFlights.");
+			throw new PlaneServiceException(PlaneServiceErrorCodes.FLIGHT_UNHNADLED_UPLOAD_ERROR);
+		}
+
+		logger.debug("Upload result was succes. ");
+		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK); // TODO
+
+	}
+
 	private Response createOkREsponse() {
 		Response response = new Response();
 
-		response.setDetail("Success delete.");
+		response.setDetail("Success.");
 		response.setStatus(200);
-		response.setTitle("Success delete.");
+		response.setTitle("Success.");
 
 		return response;
 	}

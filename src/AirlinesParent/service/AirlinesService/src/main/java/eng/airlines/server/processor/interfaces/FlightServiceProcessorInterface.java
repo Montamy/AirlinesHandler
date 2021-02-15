@@ -2,6 +2,8 @@ package eng.airlines.server.processor.interfaces;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import eng.airlines.model.interfaces.FlightModelInterface;
 import eng.airlines.server.error.PlaneServiceException;
 
@@ -14,5 +16,7 @@ public interface FlightServiceProcessorInterface {
 	public FlightModelInterface saveFlight(FlightModelInterface flight) throws PlaneServiceException;
 
 	public Boolean deleteFlightById(Long id) throws PlaneServiceException;
+
+	public Boolean uploadFlights(MultipartFile flight_file) throws PlaneServiceException;
 
 }

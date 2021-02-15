@@ -26,6 +26,8 @@ public enum PlaneServiceErrorCodes {
 	FLIGHT_UNHNADLED_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete flight.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 	FLIGHT_REQUESTED_DELETE_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested flight not exist, can not delete.", "A kért törlés nem történt meg, mivel a választott objekt nem létezik"),
 	FLIGHT_REQUESTED_GET_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested flight not exist, can not get it.", "A kért flight objekt nem létezik"),
+	FLIGHT_UPLOAD_ERROR_UNDER_READ_INPUT_FILE(HttpStatus.INTERNAL_SERVER_ERROR, 400, "Server error under read upload file.", "Kérjük vegye fel a kapcsolatot a szupportal."),
+	FLIGHT_UNHNADLED_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under upload flights.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 
 
 	;

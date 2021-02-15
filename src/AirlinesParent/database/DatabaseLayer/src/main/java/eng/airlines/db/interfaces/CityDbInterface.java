@@ -1,16 +1,8 @@
 package eng.airlines.db.interfaces;
 
-import java.util.List;
-
 import eng.airlines.model.interfaces.CityModelInterface;
 
-public interface CityDbInterface {
+public interface CityDbInterface extends BaseDbInterface<CityModelInterface> {
 
-	List<? extends CityModelInterface> findAllCity();
-
-	CityModelInterface findCityById(Long id);
-
-	CityModelInterface saveCity(CityModelInterface airline);
-
-	Boolean deleteCityById(Long id);
+	CityModelInterface findByName(String name);
 }

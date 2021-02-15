@@ -36,7 +36,7 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 
 		logger.info("Get all airline fromdatabase layer.");
 		List<AirlineModelInterface> allAirline = airlinesDbInterface
-				.findAllAirline()
+				.findAll()
 				.stream()
 				.map(x -> mapper.map(x, Airline.class))
 				.collect(Collectors.toList());
@@ -50,7 +50,7 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 		logger.info("Airline service processor findAirlineById method get the request, request id: " + id);
 
 		logger.info("Get airline by id.");
-		AirlineModelInterface dbObject = airlinesDbInterface.findAirlineById(id);
+		AirlineModelInterface dbObject = airlinesDbInterface.findById(id);
 
 		if (dbObject == null) {
 			logger.error("Selected airline object not exist.");
@@ -68,7 +68,7 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 		logger.info("Airline service processor saveAirline method get the request, request save object: " + airline);
 
 		logger.info("Save airline.");
-		AirlineModelInterface savedAirline = mapper.map(airlinesDbInterface.saveAirline(airline), Airline.class);
+		AirlineModelInterface savedAirline = mapper.map(airlinesDbInterface.save(airline), Airline.class);
 
 		logger.info("Return saved airline.");
 		return savedAirline;
@@ -79,7 +79,7 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 		logger.info("Airline service processor deleteAirlineById method get the request, request id: " + id);
 
 		logger.info("Delete airline by id.");
-		Boolean isSuccesDelete = airlinesDbInterface.deleteAirlineById(id);
+		Boolean isSuccesDelete = airlinesDbInterface.deleteById(id);
 
 		if (isSuccesDelete == null) {
 			logger.error("Error under delete airline.");

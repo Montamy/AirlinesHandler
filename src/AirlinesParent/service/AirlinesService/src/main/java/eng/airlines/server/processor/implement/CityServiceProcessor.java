@@ -44,7 +44,7 @@ public class CityServiceProcessor implements CityServiceProcessorInterface {
 		logger.info("City service processor findAllCity method get the request.");
 
 		logger.info("Get all city fromdatabase layer.");
-		List<CityModelInterface> allCity = citysDbInterface.findAllCity()
+		List<CityModelInterface> allCity = citysDbInterface.findAll()
 				.stream()
 				.map(x -> mapper.map(x, City.class))
 				.collect(Collectors.toList());
@@ -58,7 +58,7 @@ public class CityServiceProcessor implements CityServiceProcessorInterface {
 		logger.info("City service processor findCityById method get the request, request id: " + id);
 
 		logger.info("Get city by id.");
-		CityModelInterface dbObject = citysDbInterface.findCityById(id);
+		CityModelInterface dbObject = citysDbInterface.findById(id);
 
 		if (dbObject == null) {
 			logger.error("Selected city object not exist.");
@@ -78,7 +78,7 @@ public class CityServiceProcessor implements CityServiceProcessorInterface {
 			logger.info("City service processor saveCity method get the request, request save object: " + city);
 
 			logger.info("Save city.");
-			CityModelInterface savedCity = mapper.map(citysDbInterface.saveCity(city), City.class);
+			CityModelInterface savedCity = mapper.map(citysDbInterface.save(city), City.class);
 
 			logger.info("Return saved city.");
 			return savedCity;
@@ -93,7 +93,7 @@ public class CityServiceProcessor implements CityServiceProcessorInterface {
 		logger.info("City service processor deleteCityById method get the request, request id: " + id);
 
 		logger.info("Delete city by id.");
-		Boolean isSuccesDelete = citysDbInterface.deleteCityById(id);
+		Boolean isSuccesDelete = citysDbInterface.deleteById(id);
 
 		if (isSuccesDelete == null) {
 			logger.error("Error under delete city.");

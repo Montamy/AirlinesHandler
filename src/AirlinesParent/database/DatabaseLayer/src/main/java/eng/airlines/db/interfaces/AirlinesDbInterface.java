@@ -1,16 +1,8 @@
 package eng.airlines.db.interfaces;
 
-import java.util.List;
-
 import eng.airlines.model.interfaces.AirlineModelInterface;
 
-public interface AirlinesDbInterface {
+public interface AirlinesDbInterface extends BaseDbInterface<AirlineModelInterface> {
 
-	List<? extends AirlineModelInterface> findAllAirline();
-
-	AirlineModelInterface findAirlineById(Long id);
-
-	AirlineModelInterface saveAirline(AirlineModelInterface airline);
-
-	Boolean deleteAirlineById(Long id);
+	AirlineModelInterface findByName(String name);
 }
