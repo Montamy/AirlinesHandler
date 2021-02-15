@@ -51,8 +51,13 @@ public class FlightDbImplement implements FlightDbInterface {
 	@Override
 	public FlightModelInterface saveFlight(FlightModelInterface flight) {
 
-		FlightDto dbObject = mapper.map(flight, FlightDto.class);
-		return flightsDAO.save(dbObject);
+		try {
+			FlightDto dbObject = mapper.map(flight, FlightDto.class);
+			return flightsDAO.save(dbObject);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 
 	}
 

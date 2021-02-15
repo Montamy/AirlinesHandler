@@ -38,7 +38,7 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 		List<AirlineModelInterface> allAirline = airlinesDbInterface
 				.findAllAirline()
 				.stream()
-				.map(x-> mapper.map(x, Airline.class))
+				.map(x -> mapper.map(x, Airline.class))
 				.collect(Collectors.toList());
 
 		logger.info("Return result airline list.");

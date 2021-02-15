@@ -13,7 +13,6 @@ import eng.airlines.db.interfaces.FlightDbInterface;
 import eng.airlines.model.interfaces.FlightModelInterface;
 import eng.airlines.server.error.PlaneServiceErrorCodes;
 import eng.airlines.server.error.PlaneServiceException;
-import eng.airlines.server.model.Flight;
 import eng.airlines.server.processor.interfaces.FlightServiceProcessorInterface;
 
 @Service
@@ -37,7 +36,7 @@ public class FlightServiceProcessor implements FlightServiceProcessorInterface {
 		logger.info("Get all flight fromdatabase layer.");
 		List<FlightModelInterface> allFlight = flightsDbInterface.findAllFlight()
 				.stream()
-				.map(x -> mapper.map(x, Flight.class))
+				// TODO working map .map(x -> mapper.map(x, Flight.class))
 				.collect(Collectors.toList());
 
 		logger.info("Return result flight list.");
@@ -56,7 +55,7 @@ public class FlightServiceProcessor implements FlightServiceProcessorInterface {
 			throw new PlaneServiceException(PlaneServiceErrorCodes.AIRLINE_REQUESTED_GET_OBJECT_NOT_EXIST);
 		}
 
-		FlightModelInterface selectedFlight = mapper.map(dbObject, Flight.class);
+		FlightModelInterface selectedFlight = dbObject; // TODO working mapper mapper.map(dbObject, Flight.class);
 
 		logger.info("Return selected flight.");
 		return selectedFlight;
@@ -69,7 +68,9 @@ public class FlightServiceProcessor implements FlightServiceProcessorInterface {
 			logger.info("Flight service processor saveFlight method get the request, request save object: " + flight);
 
 			logger.info("Save flight.");
-			FlightModelInterface savedFlight = mapper.map(flightsDbInterface.saveFlight(flight), Flight.class);
+			FlightModelInterface savedFlight = flightsDbInterface.saveFlight(flight);
+			// TODO working mapping mapper.map(flightsDbInterface.saveFlight(flight),
+			// Flight.class);
 
 			logger.info("Return saved flight.");
 			return savedFlight;

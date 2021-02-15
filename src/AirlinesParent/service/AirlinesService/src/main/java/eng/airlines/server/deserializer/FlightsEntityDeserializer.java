@@ -2,6 +2,7 @@ package eng.airlines.server.deserializer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,22 +27,46 @@ public class FlightsEntityDeserializer extends BaseEntityDeserializer<Flight> {
 	@Override
 	public Flight deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
 
-		Map<String, Object> requestParsingObjectMap = createRequestObjectPropertyMap(jsonParser); 
-		List<Map<String, Object>> complexPropertiesPropertyMap = createComplexInnerObjectsPropertyMap(jsonParser);
+		// TODO rewrite
+		ObjectMapper mapper = new ObjectMapper();
+
+		ObjectCodec oc = jsonParser.getCodec();
+		JsonNode node = oc.readTree(jsonParser);
+
+		
+		Map<String, Object> requestParsingObjectMap = mapper.convertValue(node, new TypeReference<Map<String, Object>>() {});
+		List<Map<String, Object>> complexPropertiesPropertyMap = new ArrayList<Map<String, Object>>();
+
+		complexPropertiesPropertyMap.add(createPropertiesMapByName(AIRLINE_PROPERTY_NAME, node));
+		complexPropertiesPropertyMap.add(createPropertiesMapByName(SOURCE_CITY_PROPERTY_NAME, node));
+		complexPropertiesPropertyMap.add(createPropertiesMapByName(DESTINATION_CITY_PROPERTY_NAME, node));
+
+		// TODO reqrite end
 
 		Long id = getIdFromMap(requestParsingObjectMap);
 		Integer scheduleMin = getIntegerFromMapByItsName("scheduleMin", requestParsingObjectMap);
 		Integer distance = getIntegerFromMapByItsName("distance", requestParsingObjectMap);
 
-		Airline airline = complexPropertiesPropertyMap.get(0);
-		City source = null;
-		City destination = null;
+		Airline airline = createAirlineByPropertyMap(complexPropertiesPropertyMap.get(0));
+		City source = createCityByPropertyMap(complexPropertiesPropertyMap.get(1));
+		City destination = createCityByPropertyMap(complexPropertiesPropertyMap.get(2));
 
 
 
-		Flight city = new Flight(id, airline, source, destination, distance, scheduleMin);
+		Flight flight = new Flight(id, airline, source, destination, distance, scheduleMin);
 
-		return city;
+		return flight;
+	}
+
+	private City createCityByPropertyMap(Map<String, Object> map) {
+		CitiesEntityDeserializer cityDeserializer = new CitiesEntityDeserializer();
+		return cityDeserializer.getCityFromPropertyMap(map);
+	}
+
+	private Airline createAirlineByPropertyMap(Map<String, Object> map) {
+
+		AirlinesEntityDeserializer airlineDeserializer = new AirlinesEntityDeserializer();
+		return airlineDeserializer.getAirlineFromPropertyMap(map);
 	}
 
 	protected List<Map<String, Object>> createComplexInnerObjectsPropertyMap (JsonParser jsonParser) throws IOException {
@@ -63,7 +88,7 @@ public class FlightsEntityDeserializer extends BaseEntityDeserializer<Flight> {
 		ObjectMapper mapper = new ObjectMapper();
 
 		if (jsonNode.get(name) == null) {
-			return null;
+			return new HashMap<String, Object>();
 		}
 		return mapper.convertValue(jsonNode.get(name), new TypeReference<Map<String, Object>>() {
 		});

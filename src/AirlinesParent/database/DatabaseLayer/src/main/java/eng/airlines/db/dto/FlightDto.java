@@ -1,8 +1,8 @@
 package eng.airlines.db.dto;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,15 +27,15 @@ public class FlightDto implements FlightModelInterface {
 	private Long id;
 
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "AIRLINE_ID", referencedColumnName = "ID")
 	private AirlinesDto airline;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SOURCE_CITY_ID", referencedColumnName = "ID")
 	private CityDto sourceCity;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "DESTINATION_CITY_ID", referencedColumnName = "ID")
 	private CityDto destinationCity;
 

@@ -16,13 +16,7 @@ public class CitiesEntityDeserializer extends BaseEntityDeserializer<City> {
 
 		Map<String, Object> requestParsingObjectMap = createRequestObjectPropertyMap(jsonParser); 
 
-		Long id = getIdFromMap(requestParsingObjectMap);
-		String name = getStringFromPropertiesMapByPropertyName("name", requestParsingObjectMap);
-		Long population = getPopulationFromProperties(requestParsingObjectMap);
-
-		City city = new City(id, name, population);
-
-		return city;
+		return getCityFromPropertyMap(requestParsingObjectMap);
 	}
 
 	private Long getPopulationFromProperties(Map<String, Object> requestParsingObjectMap) {
@@ -34,5 +28,15 @@ public class CitiesEntityDeserializer extends BaseEntityDeserializer<City> {
 		}
 
 		return resultPopulation;
+	}
+
+	public City getCityFromPropertyMap(Map<String, Object> requestParsingObjectMap) {
+		Long id = getIdFromMap(requestParsingObjectMap);
+		String name = getStringFromPropertiesMapByPropertyName("name", requestParsingObjectMap);
+		Long population = getPopulationFromProperties(requestParsingObjectMap);
+
+		City city = new City(id, name, population);
+
+		return city;
 	}
 }

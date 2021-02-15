@@ -47,8 +47,8 @@ public class FlightController implements FlightControllerInterface {
 
 			) throws PlaneServiceException, Exception {
 
-				logger.info("Call processor's findAllFlight method.");
-				List<FlightModelInterface> resp = processor.findAllFlight();
+		logger.info("Call processor's findAllFlight method.");
+		List<FlightModelInterface> resp = processor.findAllFlight();
 
 		logger.debug("Return result: " + resp);
 		return new ResponseEntity<>(resp, HttpStatus.OK);

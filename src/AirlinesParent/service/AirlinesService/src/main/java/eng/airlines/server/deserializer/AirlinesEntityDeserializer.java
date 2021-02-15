@@ -16,6 +16,10 @@ public class AirlinesEntityDeserializer extends BaseEntityDeserializer<Airline> 
 
 		Map<String, Object> requestParsingObjectMap = createRequestObjectPropertyMap(jsonParser); 
 
+		return getAirlineFromPropertyMap(requestParsingObjectMap);
+	}
+
+	public Airline getAirlineFromPropertyMap(Map<String, Object> requestParsingObjectMap) {
 		Long id = getIdFromMap(requestParsingObjectMap);
 		String name = getStringFromPropertiesMapByPropertyName("name", requestParsingObjectMap);
 
