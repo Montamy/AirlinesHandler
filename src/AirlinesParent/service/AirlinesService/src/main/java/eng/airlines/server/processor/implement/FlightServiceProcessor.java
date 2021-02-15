@@ -183,4 +183,31 @@ public class FlightServiceProcessor implements FlightServiceProcessorInterface {
 		return city;
 	}
 
+	@Override
+	public List<FlightModelInterface> findFlightsBetweenCities(Long city1, Long city2) throws PlaneServiceException {
+		logger.info("Processor's findFlightsBetweenCities method with city1 id: " + city1 + " ,city2 id: " + city2);
+
+		PlaneServiceErrorCodes errorCodeUnderValidate = validateRequestCityIds(city1, city2);
+		if (errorCodeUnderValidate != null) {
+			logger.error("Invalid request, description: " + errorCodeUnderValidate.getDescription());
+			throw new PlaneServiceException(errorCodeUnderValidate);
+		}
+
+		return flightsDbInterface.findFlightsBetweenCities(city1, city2);
+	}
+
+	private PlaneServiceErrorCodes validateRequestCityIds(Long city1, Long city2) {
+
+		PlaneServiceErrorCodes errorCodeUnderValidate = null;
+
+		if (city1 == city2) {
+			logger.error("City1 and city2 ids are equal.");
+			errorCodeUnderValidate = PlaneServiceErrorCodes.FLIGHT_FIND_BY_CITIES_INVALID_REQUEST_IDS_ARE_EQUAL;
+		} else {
+			// TODO check cities are exist, use PlaneServiceErrorCodes.FLIGHT_FIND_BY_CITIES_CITY_NOT_EXIST
+		}
+
+		return errorCodeUnderValidate;
+	}
+
 }

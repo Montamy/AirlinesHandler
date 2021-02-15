@@ -19,4 +19,6 @@ public interface FlightServiceProcessorInterface {
 
 	public Boolean uploadFlights(MultipartFile flight_file) throws PlaneServiceException;
 
+	public List<FlightModelInterface> findFlightsBetweenCities(Long city1, Long city2) throws PlaneServiceException;
+
 }

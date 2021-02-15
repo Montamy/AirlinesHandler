@@ -140,6 +140,25 @@ public class FlightController implements FlightControllerInterface {
 
 	}
 
+	@RequestMapping(value = ControllerPath.FLIGHT_PATH + ControllerPath.WAY_PATH, method = RequestMethod.GET, produces = { "application/json" })
+	public ResponseEntity<List<FlightModelInterface>> findFlightsBetweenCities(
+
+			// Header
+
+			// Path
+			@RequestParam(value = "cityId1", required = true) Long city1, 
+			@RequestParam(value = "cityId2", required = true) Long city2
+
+	) throws PlaneServiceException, Exception {
+
+		logger.info("Call processor's findFlightsBetweenCities method.");
+		List<FlightModelInterface> resp = processor.findFlightsBetweenCities(city1,city2);
+
+		logger.debug("Return result: " + resp);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
+
+	}
+
 	private Response createOkREsponse() {
 		Response response = new Response();
 

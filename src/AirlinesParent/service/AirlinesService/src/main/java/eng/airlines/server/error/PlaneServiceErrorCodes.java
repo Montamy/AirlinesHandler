@@ -18,7 +18,7 @@ public enum PlaneServiceErrorCodes {
 	CITY_UNHNADLED_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete city.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 	CITY_REQUESTED_DELETE_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested city not exist, can not delete.", "A kért törlés nem történt meg, mivel a választott objekt nem létezik"),
 	CITY_REQUESTED_GET_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested city not exist, can not get it.", "A kért city objekt nem létezik"),
-	CITY_UPLOAD_ERROR_UNDER_READ_INPUT_FILE(HttpStatus.INTERNAL_SERVER_ERROR, 400, "Server error under read upload file.", "Kérjük vegye fel a kapcsolatot a szupportal."),
+	CITY_UPLOAD_ERROR_UNDER_READ_INPUT_FILE(HttpStatus.BAD_REQUEST, 400, "Server error under read upload file.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 	CITY_UNHNADLED_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under upload cities.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 	
 	// flight service
@@ -26,8 +26,10 @@ public enum PlaneServiceErrorCodes {
 	FLIGHT_UNHNADLED_DELETE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under delete flight.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 	FLIGHT_REQUESTED_DELETE_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested flight not exist, can not delete.", "A kért törlés nem történt meg, mivel a választott objekt nem létezik"),
 	FLIGHT_REQUESTED_GET_OBJECT_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Requested flight not exist, can not get it.", "A kért flight objekt nem létezik"),
-	FLIGHT_UPLOAD_ERROR_UNDER_READ_INPUT_FILE(HttpStatus.INTERNAL_SERVER_ERROR, 400, "Server error under read upload file.", "Kérjük vegye fel a kapcsolatot a szupportal."),
+	FLIGHT_UPLOAD_ERROR_UNDER_READ_INPUT_FILE(HttpStatus.BAD_REQUEST, 400, "Server error under read upload file.", "Kérjük vegye fel a kapcsolatot a szupportal."),
 	FLIGHT_UNHNADLED_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 500, "Server error under upload flights.", "Kérjük vegye fel a kapcsolatot a szupportal."),
+	FLIGHT_FIND_BY_CITIES_CITY_NOT_EXIST(HttpStatus.BAD_REQUEST, 400, "Bad request - Not exist city", "Létező város id-kat kell megadni."),
+	FLIGHT_FIND_BY_CITIES_INVALID_REQUEST_IDS_ARE_EQUAL(HttpStatus.BAD_REQUEST, 400, "Bad request - Cities ids are equal", "A city id-knak különböznie kell."),
 
 
 	;
@@ -35,7 +37,7 @@ public enum PlaneServiceErrorCodes {
 	private HttpStatus httpStatus;
 	private Integer code;
 	private String description;
-	private String details;
+	private String details; // TODO rename to displayText?
 
 	private PlaneServiceErrorCodes(HttpStatus httpStatus, Integer code, String description, String details) {
 		this.httpStatus = httpStatus;

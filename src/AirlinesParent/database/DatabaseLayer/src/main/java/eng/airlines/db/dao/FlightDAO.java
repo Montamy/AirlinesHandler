@@ -17,4 +17,11 @@ public interface FlightDAO extends CrudRepository<FlightDto, Long> {
 			+ "where airline.id= :id ")
 	public List<FlightModelInterface> findByAirlineId(Long id);
 
+	@Query("select flight from #{#entityName} flight "	
+			+ "join fetch flight.airline airline "
+			+ "join fetch flight.sourceCity sourceCity "
+			+ "join fetch flight.destinationCity destinationCity "
+			+ "where (sourceCity.id= :city1 and destinationCity.id= :city2) or (sourceCity.id= :city2 and destinationCity.id= :city1)")
+	public List<FlightModelInterface> findFlightsBetweenCities(Long city1, Long city2);
+
 }

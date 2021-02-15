@@ -85,4 +85,13 @@ public class FlightDbImplement implements FlightDbInterface {
 		return result;
 	}
 
+	@Override
+	public List<FlightModelInterface> findFlightsBetweenCities(Long city1, Long city2) {
+		List<FlightModelInterface> result = flightsDAO.findFlightsBetweenCities(city1, city2);
+		if (result == null) {
+			result = new ArrayList<FlightModelInterface>();
+		}
+		return result;
+	}
+
 }
