@@ -31,8 +31,6 @@ import eng.airlines.server.validator.PlaneServiceValidatorInterface;
 @RequestMapping(ControllerPath.BASE_PATH)
 public class FlightController implements FlightControllerInterface {
 
-	public static final String FLIGHT_PATH = "/flight";
-
 	private static Logger logger = LogManager.getLogger(FlightController.class);
 
 	@Autowired
@@ -41,7 +39,7 @@ public class FlightController implements FlightControllerInterface {
 	@Autowired
 	private FlightServiceProcessorInterface processor;
 
-	@RequestMapping(value = FLIGHT_PATH, method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.FLIGHT_PATH, method = RequestMethod.GET, produces = { "application/json" })
 	public ResponseEntity<List<FlightModelInterface>> findAllFlight(
 
 			// Header
@@ -58,7 +56,7 @@ public class FlightController implements FlightControllerInterface {
 
 	}
 
-	@RequestMapping(value = FLIGHT_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.FLIGHT_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
 	public ResponseEntity<FlightModelInterface> findFlightById(
 
 			// Header
@@ -76,7 +74,7 @@ public class FlightController implements FlightControllerInterface {
 
 	}
 
-	@RequestMapping(value = FLIGHT_PATH, method = RequestMethod.POST, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.FLIGHT_PATH, method = RequestMethod.POST, produces = { "application/json" })
 	public ResponseEntity<FlightModelInterface> saveFlight(
 
 			// Header
@@ -96,7 +94,7 @@ public class FlightController implements FlightControllerInterface {
 
 	}
 
-	@RequestMapping(value = FLIGHT_PATH + "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.FLIGHT_PATH + "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
 	public ResponseEntity<Response> deleteFlight(
 			// Header
 
@@ -118,7 +116,7 @@ public class FlightController implements FlightControllerInterface {
 
 	}
 
-	@RequestMapping(value = ControllerPath.UPLOAD_PATH + FLIGHT_PATH, method = RequestMethod.POST, produces = { "application/json" },
+	@RequestMapping(value = ControllerPath.UPLOAD_PATH + ControllerPath.FLIGHT_PATH, method = RequestMethod.POST, produces = { "application/json" },
 
 			consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<Response> uploadFlight(

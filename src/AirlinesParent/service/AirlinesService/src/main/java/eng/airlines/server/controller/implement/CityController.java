@@ -31,8 +31,6 @@ import eng.airlines.server.validator.PlaneServiceValidatorInterface;
 @RequestMapping(ControllerPath.BASE_PATH)
 public class CityController implements CityControllerInterface {
 
-	public static final String CITY_PATH = "/city";
-
 	private static Logger logger = LogManager.getLogger(CityController.class);
 
 	@Autowired
@@ -41,7 +39,7 @@ public class CityController implements CityControllerInterface {
 	@Autowired
 	private CityServiceProcessorInterface processor;
 
-	@RequestMapping(value = CITY_PATH, method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.CITY_PATH, method = RequestMethod.GET, produces = { "application/json" })
 	public ResponseEntity<List<CityModelInterface>> findAllCity(
 
 			// Header
@@ -58,7 +56,7 @@ public class CityController implements CityControllerInterface {
 
 	}
 
-	@RequestMapping(value = CITY_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.CITY_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
 	public ResponseEntity<CityModelInterface> findCityById(
 
 			// Header
@@ -76,7 +74,7 @@ public class CityController implements CityControllerInterface {
 
 	}
 
-	@RequestMapping(value = CITY_PATH, method = RequestMethod.POST, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.CITY_PATH, method = RequestMethod.POST, produces = { "application/json" })
 	public ResponseEntity<CityModelInterface> saveCity(
 
 			// Header
@@ -96,7 +94,7 @@ public class CityController implements CityControllerInterface {
 
 	}
 
-	@RequestMapping(value = CITY_PATH + "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.CITY_PATH + "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
 	public ResponseEntity<Response> deleteCity(
 			// Header
 
@@ -118,7 +116,7 @@ public class CityController implements CityControllerInterface {
 
 	}
 
-	@RequestMapping(value = ControllerPath.UPLOAD_PATH + CITY_PATH, method = RequestMethod.POST, produces = { "application/json" },
+	@RequestMapping(value = ControllerPath.UPLOAD_PATH + ControllerPath.CITY_PATH, method = RequestMethod.POST, produces = { "application/json" },
 
 			consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<Response> uploadCity(

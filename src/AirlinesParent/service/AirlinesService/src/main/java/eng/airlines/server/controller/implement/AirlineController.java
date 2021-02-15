@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import eng.airlines.model.interfaces.AirlineModelInterface;
+import eng.airlines.model.interfaces.FlightModelInterface;
 import eng.airlines.server.ControllerPath;
 import eng.airlines.server.controller.interfaces.AirlineControllerInterface;
 import eng.airlines.server.error.PlaneServiceErrorCodes;
@@ -28,8 +29,6 @@ import eng.airlines.server.validator.PlaneServiceValidatorInterface;
 @RequestMapping(ControllerPath.BASE_PATH)
 public class AirlineController implements AirlineControllerInterface {
 
-	public static final String AIRLINE_PATH = "/airline";
-
 	private static Logger logger = LogManager.getLogger(AirlineController.class);
 
 	@Autowired
@@ -38,7 +37,7 @@ public class AirlineController implements AirlineControllerInterface {
 	@Autowired
 	private AirlineServiceProcessorInterface processor;
 
-	@RequestMapping(value = AIRLINE_PATH, method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.AIRLINE_PATH, method = RequestMethod.GET, produces = { "application/json" })
 	public ResponseEntity<List<AirlineModelInterface>> findAllAirline(
 
 			// Header
@@ -55,7 +54,7 @@ public class AirlineController implements AirlineControllerInterface {
 
 	}
 
-	@RequestMapping(value = AIRLINE_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.AIRLINE_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
 	public ResponseEntity<AirlineModelInterface> findAirlineById(
 
 			// Header
@@ -73,7 +72,7 @@ public class AirlineController implements AirlineControllerInterface {
 
 	}
 
-	@RequestMapping(value = AIRLINE_PATH, method = RequestMethod.POST, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.AIRLINE_PATH, method = RequestMethod.POST, produces = { "application/json" })
 	public ResponseEntity<AirlineModelInterface> saveAirline(
 
 			// Header
@@ -93,7 +92,7 @@ public class AirlineController implements AirlineControllerInterface {
 
 	}
 
-	@RequestMapping(value = AIRLINE_PATH + "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
+	@RequestMapping(value = ControllerPath.AIRLINE_PATH + "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
 	public ResponseEntity<Response> deleteAirline(
 			// Header
 
@@ -114,6 +113,28 @@ public class AirlineController implements AirlineControllerInterface {
 		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK); // TODO
 
 	}
+
+	@RequestMapping(value = ControllerPath.AIRLINE_PATH + "/{id}" + ControllerPath.FLIGHT_PATH, method = RequestMethod.GET, produces = { "application/json" })
+	public ResponseEntity<List<FlightModelInterface>> findAirlinesFlightsByAirlineId(
+
+			// Header
+
+			// Path
+			@PathVariable("id") Long id
+
+	) throws PlaneServiceException, Exception {
+
+		logger.info("Call processor's findAirlineById method.");
+		List<FlightModelInterface> resp = processor.findAirlinesFlightsByAirlineId(id);
+
+		logger.debug("Return result: " + resp);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
+
+	}
+
+	// public ResponseEntity<List<FlightModelInterface>>
+	// findAirlinesFlightsByAirlineId(@PathVariable("id") Long id) throws
+	// PlaneServiceException, Exception;
 
 	private Response createOkREsponse() {
 		Response response = new Response();

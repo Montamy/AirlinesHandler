@@ -3,6 +3,7 @@ package eng.airlines.server.processor.interfaces;
 import java.util.List;
 
 import eng.airlines.model.interfaces.AirlineModelInterface;
+import eng.airlines.model.interfaces.FlightModelInterface;
 import eng.airlines.server.error.PlaneServiceException;
 
 public interface AirlineServiceProcessorInterface {
@@ -14,5 +15,7 @@ public interface AirlineServiceProcessorInterface {
 	public AirlineModelInterface saveAirline(AirlineModelInterface airline) throws PlaneServiceException;
 
 	public Boolean deleteAirlineById(Long id) throws PlaneServiceException;
+
+	public List<FlightModelInterface> findAirlinesFlightsByAirlineId(Long id) throws PlaneServiceException;
 
 }

@@ -76,4 +76,13 @@ public class FlightDbImplement implements FlightDbInterface {
 		}
 	}
 
+	@Override
+	public List<FlightModelInterface> findAirlinesFlightsByAirlineId(Long id) {
+		List<FlightModelInterface> result = flightsDAO.findByAirlineId(id);
+		if (result == null) {
+			result = new ArrayList<FlightModelInterface>();
+		}
+		return result;
+	}
+
 }

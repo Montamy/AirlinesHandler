@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import eng.airlines.model.interfaces.AirlineModelInterface;
+import eng.airlines.model.interfaces.FlightModelInterface;
 import eng.airlines.server.error.PlaneServiceException;
 import eng.airlines.server.model.Response;
 
@@ -19,4 +20,6 @@ public interface AirlineControllerInterface {
 	public ResponseEntity<AirlineModelInterface> saveAirline(@RequestBody AirlineModelInterface airline) throws PlaneServiceException, Exception;
 
 	public ResponseEntity<Response> deleteAirline(@PathVariable("id") Long id) throws PlaneServiceException, Exception;
+
+	public ResponseEntity<List<FlightModelInterface>> findAirlinesFlightsByAirlineId(@PathVariable("id") Long id) throws PlaneServiceException, Exception;
 }

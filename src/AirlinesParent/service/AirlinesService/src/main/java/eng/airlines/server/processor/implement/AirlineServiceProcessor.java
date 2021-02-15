@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import eng.airlines.db.interfaces.AirlinesDbInterface;
+import eng.airlines.db.interfaces.FlightDbInterface;
 import eng.airlines.model.interfaces.AirlineModelInterface;
+import eng.airlines.model.interfaces.FlightModelInterface;
 import eng.airlines.server.error.PlaneServiceErrorCodes;
 import eng.airlines.server.error.PlaneServiceException;
 import eng.airlines.server.model.Airline;
@@ -23,6 +25,9 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 
 	@Autowired
 	private AirlinesDbInterface airlinesDbInterface;
+
+	@Autowired
+	private FlightDbInterface flightsDbInterface;
 
 	DozerBeanMapper mapper;
 
@@ -91,6 +96,19 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 
 		logger.info("Delete was success");
 		return true;
+	}
+
+	// TODO ezt szebben is meglehetne, hogy az AirlinesDto-ba OneToMany-vel lenne
+	// egy lista hozzá rendelve
+	@Override
+	public List<FlightModelInterface> findAirlinesFlightsByAirlineId(Long id) throws PlaneServiceException {
+
+		logger.info("Processor's findAirlinesFlightsByAirlineId get request with id: " + id);
+
+		return flightsDbInterface.findAirlinesFlightsByAirlineId(id).stream()
+				// TODO working map .map(x -> mapper.map(x, Flight.class))
+				.collect(Collectors.toList());
+
 	}
 
 }
