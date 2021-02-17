@@ -110,7 +110,7 @@ public class AirlineController implements AirlineControllerInterface {
 		}
 
 		logger.debug("Delete result was succes. ");
-		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK); // TODO
+		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK);
 
 	}
 

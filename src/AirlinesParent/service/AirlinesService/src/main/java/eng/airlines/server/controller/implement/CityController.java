@@ -112,7 +112,7 @@ public class CityController implements CityControllerInterface {
 		}
 
 		logger.debug("Delete result was succes. ");
-		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK); // TODO
+		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK);
 
 	}
 
@@ -137,7 +137,7 @@ public class CityController implements CityControllerInterface {
 
 
 		logger.debug("Upload result was succes. ");
-		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK); // TODO
+		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK);
 
 	}
 

@@ -1,6 +1,7 @@
 package eng.airlines.dijsktra.calculator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,20 +69,26 @@ public class DijkstraPathCalculator implements PathCalculatorInterface {
 
 
 
-		logger.info("Lehet megvan, debug point");
+		logger.info("Search result from graph.");
+		List<FlightModelInterface> result = getShortestPathTo(nodes, cityId1, cityId2);
 
-		return null;
+		return result;
 	}
 
 	private List<Node> initUnsettledNodes(List<Node> allnodes, Long startCity) {
-		List<Node> unsettledNodes = new ArrayList<Node>();
+		try {
+			List<Node> unsettledNodes = new ArrayList<Node>();
 
-		Node firstNode = allnodes.stream().filter(x -> x.getCity().getId() == startCity).findFirst().get();
-		firstNode.setIsSettled(true);
+			Node firstNode = allnodes.stream().filter(x -> x.getCity().getId() == startCity).findFirst().get();
+			firstNode.setIsSettled(true);
 
-		unsettledNodes.add(firstNode);
+			unsettledNodes.add(firstNode);
 
-		return unsettledNodes;
+			return unsettledNodes;
+		} catch (Exception e) {
+			logger.error("Not exist startNode.");
+			return new ArrayList<Node>();
+		}
 
 	}
 
@@ -115,7 +122,7 @@ public class DijkstraPathCalculator implements PathCalculatorInterface {
 				predecessor.add(destinationNode, flight);
 			}
 
-			node.setPredecessor(predecessor);
+			node.setNeighbors(predecessor);
 		}
 
 		return availableNodes;
@@ -129,6 +136,29 @@ public class DijkstraPathCalculator implements PathCalculatorInterface {
 					.stream()
 					// TODO working map .map(x -> mapper.map(x, Flight.class))
 					.collect(Collectors.toList());
+		}
+	}
+
+	public static List<FlightModelInterface> getShortestPathTo(List<Node> nodes, Long sourceCityId, Long destinationCityId) {
+		
+		try {
+			List<FlightModelInterface> path = new ArrayList<FlightModelInterface>();
+
+			Node lastVertex = nodes.stream().filter(x -> x.getCity().getId() == destinationCityId).findFirst().get();
+
+			Node nowVertex = lastVertex.getPredecessor();
+
+			while (nowVertex != null) {
+				path.add(nowVertex.getNeighbors().getFirst(lastVertex));
+				lastVertex = nowVertex;
+				nowVertex = nowVertex.getPredecessor();
+			}
+
+			Collections.reverse(path);
+			return path;
+		} catch (Exception e) {
+			logger.error("Error under get path result.");
+			return new ArrayList<FlightModelInterface>();
 		}
 	}
 

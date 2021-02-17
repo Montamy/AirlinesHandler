@@ -98,7 +98,7 @@ public class AirlineServiceProcessor implements AirlineServiceProcessorInterface
 		return true;
 	}
 
-	// TODO ezt szebben is meglehetne, hogy az AirlinesDto-ba OneToMany-vel lenne
+	// TODO can this better with @manyToMany or something like that
 	// egy lista hozzá rendelve
 	@Override
 	public List<FlightModelInterface> findAirlinesFlightsByAirlineId(Long id) throws PlaneServiceException {

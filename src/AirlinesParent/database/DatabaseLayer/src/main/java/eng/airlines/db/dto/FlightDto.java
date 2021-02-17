@@ -98,23 +98,20 @@ public class FlightDto implements FlightModelInterface {
 		this.scheduleMin = scheduleMin;
 	}
 
-	// TODO
-
 	@Override
 	public void setAirline(AirlineModelInterface airline) {
-		// TODO Auto-generated method stub
-
+		this.setAirline(getAirline());
 	}
 
 	@Override
 	public void setSourceCity(CityModelInterface sourceCity) {
-		// TODO Auto-generated method stub
+		this.setSourceCity(sourceCity);
 
 	}
 
 	@Override
 	public void setDestinationCity(CityModelInterface destinationCity) {
-		// TODO Auto-generated method stub
+		this.setDestinationCity(destinationCity);
 
 	}
 

@@ -165,7 +165,7 @@ public class FlightServiceProcessor implements FlightServiceProcessorInterface {
 
 		if (airline == null) {
 			logger.info("airline not exist, save new one.");
-			airline = airlinesDbInterface.save(new Airline(null, name)); // TODO itt dobhatnék hibát is, hogy nem létezik
+			airline = airlinesDbInterface.save(new Airline(null, name)); // TODO maybe here should throw an "not exist objekt" exception
 			logger.info("Saved new airline: " + airline);
 		}
 		return airline;
@@ -177,7 +177,7 @@ public class FlightServiceProcessor implements FlightServiceProcessorInterface {
 
 		if (city == null) {
 			logger.info("City not exist, save new one.");
-			city = citysDbInterface.save(new City(null, name, FILE_FLIGHT_UPLOAD_NOT_EXIST_CITY_POPULATION)); // TODO itt dobhatnék hibát is, hogy nem létezik
+			city = citysDbInterface.save(new City(null, name, FILE_FLIGHT_UPLOAD_NOT_EXIST_CITY_POPULATION)); // TODO maybe here should throw an "not exist objekt" exception
 			logger.info("Saved new city: " + city);
 		}
 		return city;
@@ -205,7 +205,7 @@ public class FlightServiceProcessor implements FlightServiceProcessorInterface {
 			errorCodeUnderValidate = PlaneServiceErrorCodes.FLIGHT_FIND_BY_CITIES_INVALID_REQUEST_IDS_ARE_EQUAL;
 		} else {
 			// TODO check cities are exist, use PlaneServiceErrorCodes.FLIGHT_FIND_BY_CITIES_CITY_NOT_EXIST
-			// úgy vesszük mindig jók a bejövő adatok
+			// Testing projekt, this datas are always good
 		}
 
 		return errorCodeUnderValidate;

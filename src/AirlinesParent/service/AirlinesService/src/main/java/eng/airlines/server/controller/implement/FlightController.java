@@ -117,7 +117,7 @@ public class FlightController implements FlightControllerInterface {
 		}
 
 		logger.debug("Delete result was succes. ");
-		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK); // TODO
+		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK);
 
 	}
 
@@ -141,7 +141,7 @@ public class FlightController implements FlightControllerInterface {
 		}
 
 		logger.debug("Upload result was succes. ");
-		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK); // TODO
+		return new ResponseEntity<Response>(createOkREsponse(), HttpStatus.OK);
 
 	}
 
@@ -176,6 +176,25 @@ public class FlightController implements FlightControllerInterface {
 		
 		logger.info("Call processor's shortestPathWithDijkstra method.");
 		List<FlightModelInterface> resp = pathCalculator.calculatePath(type, cityId1, cityId2, null);
+
+		logger.debug("Return result: " + resp);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = ControllerPath.SHORTEST_PATH_PATH + "/{id}", method = RequestMethod.GET, produces = { "application/json" })
+	public ResponseEntity<List<FlightModelInterface>> shortestPathWithDijkstraByOneAirline(
+
+			@RequestParam(value = "cityId1", required = true) Long cityId1,
+			@RequestParam(value = "cityId2", required = true) Long cityId2,
+			
+			@PathVariable("id") Long id
+
+	) throws PlaneServiceException, Exception {
+
+		PathEdgeWeightType type = PathEdgeWeightType.DISTANCE;	//TODO requestParam
+		
+		logger.info("Call processor's shortestPathWithDijkstra method.");
+		List<FlightModelInterface> resp = pathCalculator.calculatePath(type, cityId1, cityId2, id);
 
 		logger.debug("Return result: " + resp);
 		return new ResponseEntity<>(resp, HttpStatus.OK);

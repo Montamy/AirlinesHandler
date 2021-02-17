@@ -30,7 +30,7 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 	@Override
 	public List<? extends AirlineModelInterface> findAll() {
 
-		// TODO itt interfacet hasznalni
+
 		List<AirlinesDto> airlines = new ArrayList<AirlinesDto>();
 		airlinesDAO.findAll().forEach(airlines::add);
 
