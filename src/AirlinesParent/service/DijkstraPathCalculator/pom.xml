@@ -9,50 +9,43 @@
 		<relativePath>../</relativePath>
 	</parent>
 	
-	<artifactId>AirlinesService</artifactId>
-	<name>AirlinesService</name>
-	<description>Airlines project airline, city, flight micro service</description>
+
+	<artifactId>DijkstraPathCalculator</artifactId>
+	<name>DijkstraPathCalculator</name>
+	<description>Dijkstra path calculator</description>
+
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<version>${project.version}</version>
+			<artifactId>AirlinesCommon</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<version>${project.version}</version>
+			<artifactId>DatabaseLayer</artifactId>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<version>${project.version}</version>
-			<artifactId>AirlinesCommon</artifactId>
-		</dependency>
-		
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<version>${project.version}</version>
-			<artifactId>DatabaseLayer</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<version>${project.version}</version>
-			<artifactId>DijkstraPathCalculator</artifactId>
-		</dependency>
-		
-
-		
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

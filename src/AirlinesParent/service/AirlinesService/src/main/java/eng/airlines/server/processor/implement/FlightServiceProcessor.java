@@ -205,9 +205,12 @@ public class FlightServiceProcessor implements FlightServiceProcessorInterface {
 			errorCodeUnderValidate = PlaneServiceErrorCodes.FLIGHT_FIND_BY_CITIES_INVALID_REQUEST_IDS_ARE_EQUAL;
 		} else {
 			// TODO check cities are exist, use PlaneServiceErrorCodes.FLIGHT_FIND_BY_CITIES_CITY_NOT_EXIST
+			// úgy vesszük mindig jók a bejövő adatok
 		}
 
 		return errorCodeUnderValidate;
 	}
+
+
 
 }

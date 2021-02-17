@@ -5,13 +5,10 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import eng.airlines.model.interfaces.FlightModelInterface;
-import eng.airlines.server.ControllerPath;
 import eng.airlines.server.error.PlaneServiceException;
 import eng.airlines.server.model.Response;
 
@@ -28,4 +25,6 @@ public interface FlightControllerInterface {
 	public ResponseEntity<Response> uploadFlight(@RequestParam("flight_file") MultipartFile flight_file) throws PlaneServiceException, Exception;
 	
 	public ResponseEntity<List<FlightModelInterface>> findFlightsBetweenCities(@RequestParam(value = "cityId1", required = true) Long city1, @RequestParam(value = "cityId2", required = true) Long city2) throws PlaneServiceException, Exception;
+
+	public ResponseEntity<List<FlightModelInterface>> shortestPathWithDijkstra(@RequestParam(value = "cityId1", required = true) Long cityId1,@RequestParam(value = "cityId2", required = true) Long cityId2) throws PlaneServiceException, Exception;
 }

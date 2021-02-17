@@ -7,14 +7,14 @@ import java.util.Optional;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import eng.airlines.db.dao.CityDAO;
 import eng.airlines.db.dto.CityDto;
 import eng.airlines.db.interfaces.CityDbInterface;
 import eng.airlines.model.interfaces.CityModelInterface;
 
-@Service
+@Repository
 public class CityDbImplement implements CityDbInterface {
 
 

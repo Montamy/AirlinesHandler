@@ -7,14 +7,14 @@ import java.util.Optional;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import eng.airlines.db.dao.AirlinesDAO;
 import eng.airlines.db.dto.AirlinesDto;
 import eng.airlines.db.interfaces.AirlinesDbInterface;
 import eng.airlines.model.interfaces.AirlineModelInterface;
 
-@Service
+@Repository
 public class AirlinesDbImplement implements AirlinesDbInterface {
 
 
@@ -30,6 +30,7 @@ public class AirlinesDbImplement implements AirlinesDbInterface {
 	@Override
 	public List<? extends AirlineModelInterface> findAll() {
 
+		// TODO itt interfacet hasznalni
 		List<AirlinesDto> airlines = new ArrayList<AirlinesDto>();
 		airlinesDAO.findAll().forEach(airlines::add);
 

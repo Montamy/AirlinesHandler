@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import eng.airlines.dijsktra.calculator.DijkstraPathCalculator;
 import eng.airlines.model.interfaces.FlightModelInterface;
+import eng.airlines.model.type.PathEdgeWeightType;
 import eng.airlines.server.ControllerPath;
 import eng.airlines.server.controller.interfaces.FlightControllerInterface;
 import eng.airlines.server.error.PlaneServiceErrorCodes;
@@ -35,6 +37,9 @@ public class FlightController implements FlightControllerInterface {
 
 	@Autowired
 	private PlaneServiceValidatorInterface validator;
+
+	@Autowired
+	private DijkstraPathCalculator pathCalculator;
 
 	@Autowired
 	private FlightServiceProcessorInterface processor;
@@ -157,6 +162,23 @@ public class FlightController implements FlightControllerInterface {
 		logger.debug("Return result: " + resp);
 		return new ResponseEntity<>(resp, HttpStatus.OK);
 
+	}
+
+	@RequestMapping(value = ControllerPath.SHORTEST_PATH_PATH, method = RequestMethod.GET, produces = { "application/json" })
+	public ResponseEntity<List<FlightModelInterface>> shortestPathWithDijkstra(
+
+			@RequestParam(value = "cityId1", required = true) Long cityId1,
+			@RequestParam(value = "cityId2", required = true) Long cityId2
+
+	) throws PlaneServiceException, Exception {
+
+		PathEdgeWeightType type = PathEdgeWeightType.DISTANCE;	//TODO requestParam
+		
+		logger.info("Call processor's shortestPathWithDijkstra method.");
+		List<FlightModelInterface> resp = pathCalculator.calculatePath(type, cityId1, cityId2, null);
+
+		logger.debug("Return result: " + resp);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
 	}
 
 	private Response createOkREsponse() {

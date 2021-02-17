@@ -7,14 +7,14 @@ import java.util.Optional;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import eng.airlines.db.dao.FlightDAO;
 import eng.airlines.db.dto.FlightDto;
 import eng.airlines.db.interfaces.FlightDbInterface;
 import eng.airlines.model.interfaces.FlightModelInterface;
 
-@Service
+@Repository
 public class FlightDbImplement implements FlightDbInterface {
 
 

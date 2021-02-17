@@ -10,6 +10,7 @@ public class ControllerPath {
 	public static final String FLIGHT_PATH = "/flight";
 	public static final String AIRLINE_PATH = "/airline";
 
+	public static final String SHORTEST_PATH_PATH = "/result";
 
 
 
