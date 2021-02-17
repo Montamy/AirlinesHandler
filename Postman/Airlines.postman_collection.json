@@ -1,0 +1,536 @@
+{
+	"info": {
+		"_postman_id": "aa334532-1511-4bee-b1ef-7e5bde868fbe",
+		"name": "Airlines",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Airlines",
+			"item": [
+				{
+					"name": "saveAirline",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"name\":    \"elso\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{airlinePath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{airlinePath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAirline",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{airlinePath}}/{{airlineId}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{airlinePath}}",
+								"{{airlineId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAirlinesFlights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{airlinePath}}/{{airlineId}}/{{flightPath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{airlinePath}}",
+								"{{airlineId}}",
+								"{{flightPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listAirlines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{airlinePath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{airlinePath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAirline",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{airlinePath}}/{{airlineId}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{airlinePath}}",
+								"{{airlineId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "saveCity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":    \"masodik\",\r\n    \"population\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{cityPath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{cityPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{cityPath}}/{{cityId}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{cityPath}}",
+								"{{cityId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listCities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{cityPath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{cityPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCity",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{cityPath}}/{{cityId}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{cityPath}}",
+								"{{cityId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flight",
+			"item": [
+				{
+					"name": "saveFlight",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airline\": {\r\n            \"id\": 1,\r\n             \"name\": \"elso\"\r\n    },\r\n    \"sourceCity\": {\r\n         \"id\": 1,\r\n        \"name\": \"elso\",\r\n        \"population\": 1\r\n    },\r\n    \"destinationCity\": {\r\n       \"id\": 2,\r\n        \"name\": \"masodik\",\r\n        \"population\": 2\r\n    },\r\n    \"distance\": 100,\r\n    \"scheduleMin\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{flightPath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{flightPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFlight",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{flightPath}}/{{flightId}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{flightPath}}",
+								"{{flightId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listFlight",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{flightPath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{flightPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFlightBetweenCities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{flightPath}}/{{way}}?cityId1=1&cityId2=2",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{flightPath}}",
+								"{{way}}"
+							],
+							"query": [
+								{
+									"key": "cityId1",
+									"value": "1"
+								},
+								{
+									"key": "cityId2",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFlight",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{flightPath}}/{{flightId}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{flightPath}}",
+								"{{flightId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Dijkstra",
+			"item": [
+				{
+					"name": "dijkstraShortPathAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{shortPath}}?cityId1=1&cityId2=5",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{shortPath}}"
+							],
+							"query": [
+								{
+									"key": "cityId1",
+									"value": "1"
+								},
+								{
+									"key": "cityId2",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dijkstraShortPathOneAirline",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{shortPath}}//{{airlineId}}?cityId1=1&cityId2=5",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{shortPath}}",
+								"",
+								"{{airlineId}}"
+							],
+							"query": [
+								{
+									"key": "cityId1",
+									"value": "1"
+								},
+								{
+									"key": "cityId2",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Upload Files",
+			"item": [
+				{
+					"name": "uploadCity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "city_file",
+									"type": "file",
+									"src": "/G:/Download/input_city.txt"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{upload}}/{{cityPath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{upload}}",
+								"{{cityPath}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadFlights",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "flight_file",
+									"type": "file",
+									"src": "/G:/Download/input_flight.txt"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}:{{port}}/{{upload}}/{{flightPath}}",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{upload}}",
+								"{{flightPath}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
